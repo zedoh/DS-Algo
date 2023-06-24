@@ -5,7 +5,7 @@ using namespace std;
 /*
     basic --> basic testing
     Easy --> Testing HW Easy functions
-    Medium --> Testing HW medium functions
+    Medium --> Testing HW medium  to hard functions
 */
 
 void basic()
@@ -30,7 +30,7 @@ void basic()
     list.insert_front(10);
     list.print();
 
-    cout << "current size of the list: " << list.list_size() << endl;
+    cout << "current size of the list: " << list.size() << endl;
     cout << "Get the Nth Element --> ";
     cout << list.get_nth(1)->data << endl; // 10
 
@@ -42,6 +42,23 @@ void basic()
     list.pop_back(); // 14 --> 11 12 13
     list.print();
     cout << "***************************\n";
+
+    cout << "Insert 55 at the front , 66 at the back\n";
+    list.insert(list.size() + 1, 66);
+    list.insert(1, 55);
+    list.print();
+    cout << "\n";
+
+    cout << "The first element in the list is : ";
+    cout << list.front() << endl;
+
+    cout << "The last element in the list is : ";
+    cout << list.back() << endl;
+
+    cout<<"Delete the 3rd index: " ; //12
+    list.erase(3) ; 
+    list.print() ; 
+
 }
 
 void Easy()

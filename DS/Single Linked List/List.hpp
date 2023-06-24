@@ -82,7 +82,7 @@ public:
       return temp;
    }
 
-   int list_size()
+   int size()
    {
       return length;
    }
@@ -137,9 +137,10 @@ public:
 
    void pop_back()
    {
-      if(length == 0 ){
-         std::cout<<"Nothing to pop !!"<<std::endl ; 
-         return ; 
+      if (length == 0)
+      {
+         std::cout << "Nothing to pop !!" << std::endl;
+         return;
       }
       if (length == 1)
       {
@@ -147,11 +148,114 @@ public:
       }
       else
       {
-         Node *newTail = get_nth(length-1) ; 
-         tail = newTail ; 
-         tail->next=nullptr;
+         Node *newTail = get_nth(length - 1);
+         tail = newTail;
+         tail->next = nullptr;
       }
       --length;
    }
+
+   // Get the value of the first element
+   int front()
+   {
+      if (length == 0)
+      {
+         std::cout << "The list is already empty !! " << std::endl;
+         return -1;
+      }
+      return head->data;
+   }
+
+   // Get the value of the last element
+   int back()
+   {
+      if (length == 0)
+      {
+         std::cout << "The list is already empty !! " << std::endl;
+         return -1;
+      }
+      return tail->data;
+   }
+
+   // Insert an element at a specific index with a specific value
+   void insert(int idx, int value)
+   {
+      Node *curr = new Node(value);
+
+      if (length == 0)
+      {
+         insert_end(value);
+      }
+      else if (idx == 1){
+         insert_front(value) ; 
+      }
+      else if (idx > length + 1)
+      {
+         std::cout<<"Out of the boundries !! "<<std::endl ;
+         return;
+      }
+      else if (idx == length + 1)
+      {
+         insert_end(value);
+      }
+      else
+      {
+         Node *prev = get_nth(idx - 1);
+         for (Node *temp = head; temp; temp = temp->next)
+         {
+            if (temp == prev->next)
+            {
+               prev->next = curr;
+               curr->next = temp;
+               break;
+            }
+         }
+      }
+      ++length;
+   }
+
+// Erase a specific element from the list using index
+void erase(int idx)
+{
+   if (length == 0)
+   {
+      std::cout << "There are no elements to delete!" << std::endl;
+      return;
+   }
+   if (length == 1)
+   {
+      delete head;
+      head = nullptr;
+      tail = nullptr;
+   }
+   else
+   {
+      if (idx == 1)
+      {
+         Node *temp = head;
+         head = temp->next;
+         delete temp;
+         temp = nullptr;
+      }
+      else if (idx == length)
+      {
+         Node *temp = get_nth(idx - 1);
+         delete tail;
+         tail = temp;
+         tail->next = nullptr;
+      }
+      else
+      {
+         Node *temp = get_nth(idx - 1);
+         Node *toDelete = temp->next;
+         temp->next = toDelete->next;
+         delete toDelete;
+         toDelete = nullptr;
+      }
+   }
+   --length;
+}
+
+
 };
 #endif
