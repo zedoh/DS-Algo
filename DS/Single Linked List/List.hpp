@@ -35,6 +35,15 @@ public:
       head = nullptr;
       tail = nullptr;
    }
+   //Utility function to return nothing whenever list is empty 
+   void empty_list(){
+      if(length == 0){
+         std::cout<<"The list is empty !!"<<std::endl  ; 
+         return ;
+      }else{
+         std::cout<<"The list isn't empty !!! "<<std::endl ;
+      }
+   }
    void print()
    {
       if (length == 0)
@@ -255,6 +264,30 @@ void erase(int idx)
    }
    --length;
 }
+   int value_from_end(int idx){
+      
+      if(idx>length){
+         throw std::out_of_range("out of range") ; 
+      }
+      else if(idx == 1){
+         return tail->data ; 
+      }
+      else if(idx == length){
+         return head->data ; 
+      }
+      else if(length == 0 ){
+         empty_list() ; 
+      } 
+
+      idx = (int)size()-idx+1 ;  ; 
+      int count{0} ; 
+      for(Node*curr = head ; curr ; curr = curr->next){
+         if(idx == count++){
+            return curr->data ; 
+         }
+      }
+      return -1; 
+   }
 
 
 };

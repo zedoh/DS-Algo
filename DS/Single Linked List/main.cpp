@@ -59,6 +59,9 @@ void basic()
     list.erase(3) ; 
     list.print() ; 
 
+    cout<<"\nReturn the 2nd element from the list: " ;
+    cout<<list.value_from_end(2)<<endl ;  
+
 }
 
 void Easy()
