@@ -2,18 +2,20 @@
 #include "List.hpp"
 
 using namespace std;
-/*
-    basic --> basic testing
-    Easy --> Testing HW Easy functions
-    Medium --> Testing HW medium  to hard functions
-*/
+
+void printLine(const string &text)
+{
+    cout << "***********************************************************\n";
+    cout << text << '\n';
+    cout << "***********************************************************\n";
+}
 
 void basic()
 {
     List list;
 
-    cout << "***************************\n";
-    cout << "TEST 1:  Basic Functions\n\n";
+    printLine("TEST 1: Basic Functions");
+
     cout << "Insert Function\n";
     cout << "--------------------\n";
     list.insert_end(11);
@@ -21,57 +23,71 @@ void basic()
     list.insert_end(13);
     list.insert_end(14);
     list.print();
-    cout << endl;
     cout << '\n';
 
-    cout << "Does the list is empty ?? " << boolalpha << list.empty() << endl;
-    cout << "------------------------------------------------\n";
-    cout << "Insert Front the value 10" << endl;
+    cout << "The size of the list is: " << list.size() << endl;
+    cout << "Is the list empty? " << boolalpha << list.empty() << endl;
+
+    printLine("Insert Front the value 10");
     list.insert_front(10);
     list.print();
-
-    cout << "current size of the list: " << list.size() << endl;
-    cout << "Get the Nth Element --> ";
-    cout << list.get_nth(1)->data << endl; // 10
-
-    cout << "LETS Delete the first element in the list !!! " << endl;
-    list.pop_front();
-    list.print();
-
-    cout << "LETS Delete the last element in the list !! " << endl;
-    list.pop_back(); // 14 --> 11 12 13
-    list.print();
-    cout << "***************************\n";
-
-    cout << "Insert 55 at the front , 66 at the back\n";
-    list.insert(list.size() + 1, 66);
-    list.insert(1, 55);
-    list.print();
+    cout << "The size of the list is: " << list.size() << endl;
     cout << "\n";
 
-    cout << "The first element in the list is : ";
-    cout << list.front() << endl;
+    printLine("Get the Nth Element (the first element): ");
+    cout << list.get_nth(1)->data << endl;
+    cout << "\n";
 
-    cout << "The last element in the list is : ";
-    cout << list.back() << endl;
+    printLine("Let's Delete the first element in the list!! ");
+    list.pop_front();
+    list.print();
+    cout << "The size of the list is: " << list.size() << endl;
+    cout << "Let's delete the last element in the list!" << endl;
+    list.pop_back();
+    list.print();
+    cout << "The size of the list is: " << list.size() << endl;
+    cout << "\n";
 
-    cout<<"Delete the 3rd index: " ; //12
-    list.erase(3) ; 
+    printLine("Insert 66 at the back then, 77 at the back");
+    list.insert(3, 66);
+    list.insert(list.size(), 77);
+    list.print();
+    cout << "The size of the list is: " << list.size() << endl;
+    cout << "The first element in the list is: " << list.front() << endl;
+    cout << "The last element in the list is: " << list.back() << endl;
+
+    cout << "\n";
+    printLine("Delete the 3rd index from the list:");
+    list.erase(3);
+    list.print();
+    cout << "The size of the list is: " << list.size() << endl;
+    cout << '\n';
+
+    printLine("Return the 2nd element from the end of the list: ");
+    cout << list.value_from_end(2) << endl;
+    printLine("Return the 3rd element from the end of the list: ");
+    cout << list.value_from_end(3) << endl;
+    cout << "\n";
+
+    printLine("Let's REVERSE the list ") ; 
+    list.reverse() ; // 77 66 12 11
+    list.print() ;
+    cout << '\n';
+
+
+    printLine("Delete an Element that has the value 66") ; 
+    list.remove_value(66) ; // 77 , 12 , 11 
     list.print() ; 
-
-    cout<<"\nReturn the 2nd element from the list: " ;
-    cout<<list.value_from_end(2)<<endl ;  
-
 }
 
 void Easy()
 {
-    return;
+    // Add your test code for Easy functions here
 }
 
 void Medium()
 {
-    return;
+    // Add your test code for Medium to Hard functions here
 }
 
 int main()
