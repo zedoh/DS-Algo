@@ -1,13 +1,17 @@
 #ifndef _LIST_
 #define _LIST_
 #include <cassert>
+#include <algorithm>
+#include <sstream>
+#include<string>
+#include <climits>
 #include <iostream>
 #include <vector>
-    // Code Complexity
-    // Space Complextiy : O(N)
+// Code Complexity
+// Space Complextiy : O(N)
 
-    // Time Complexity : O(N)
-    struct Node
+// Time Complexity : O(N)
+struct Node
 {
    int data;
    Node *next;
@@ -17,12 +21,119 @@
 class List
 {
 private:
-   Node *head{};
-   Node *tail{};
+   Node *head{ };
+   Node *tail{ };
    int length{0};
 
+   std::vector <Node*> debug_data; // add/remove nodes you use
+
+   void debug_add_node(Node *node)
+   {
+      debug_data.push_back(node);
+   }
+   void debug_remove_node(Node *node)
+   {
+      auto it = std::find(debug_data.begin(), debug_data.end(), node);
+      if (it == debug_data.end())
+         std::cout << "Node does not exist\n";
+      else
+         debug_data.erase(it);
+   }
+
 public:
-   // TODO : DESTRUCTOR ERROR
+   List() {}
+   List(const List &) = delete;
+   List &operator=(const List &another) = delete;
+
+   void debug_print_address()
+   {
+      for (Node *cur = head; cur; cur = cur->next)
+         std::cout << cur << "," << cur->data << "\t";
+      std::cout << "\n";
+   }
+
+   void debug_print_node(Node *node, bool is_seperate = false)
+   {
+      if (is_seperate)
+         std::cout << "Sep: ";
+      if (node == nullptr)
+      {
+         std::cout << "nullptr\n";
+         return;
+      }
+      std::cout << node->data << " ";
+      if (node->next == nullptr)
+         std::cout << "X ";
+      else
+         std::cout << node->next->data << " ";
+
+      if (node == head)
+         std::cout << "head\n";
+      else if (node == tail)
+         std::cout << "tail\n";
+      else
+         std::cout << "\n";
+   }
+   void debug_print_list(std::string msg = "")
+   {
+      if (msg != "")
+         std::cout << msg << "\n";
+      for (int i = 0; i < (int)debug_data.size(); ++i)
+         debug_print_node(debug_data[i]);
+      std::cout << "************\n"
+                << std::flush;
+   }
+
+   std::string debug_to_string()
+   {
+      if (length == 0)
+         return "";
+      std::ostringstream oss;
+      for (Node *cur = head; cur; cur = cur->next)
+      {
+         oss << cur->data;
+         if (cur->next)
+            oss << " ";
+      }
+      return oss.str();
+   }
+
+   void debug_verify_data_integrity()
+   {
+      if (length == 0)
+      {
+         assert(head == nullptr);
+         assert(tail == nullptr);
+         return;
+      }
+
+      assert(head != nullptr);
+      assert(tail != nullptr);
+      assert(tail->next == nullptr);
+
+      if (length == 1)
+         assert(head == tail);
+      else
+      {
+         assert(head != tail);
+
+         if (length == 2)
+            assert(head->next == tail);
+         else if (length == 3)
+         {
+            assert(head->next);
+            assert(head->next->next == tail);
+         }
+      }
+      int len = 0;
+      Node *prev = nullptr;
+      for (Node *cur = head; cur; prev = cur, cur = cur->next, len++)
+         assert(len < 10000); // Consider infinite cycle?
+
+      assert(length == len);
+      assert(length == (int)debug_data.size());
+      assert(prev == tail); // last node is tail
+   }
    ~List()
    {
       Node *curr = head;
@@ -74,6 +185,7 @@ public:
          tail->next = nullptr;
          ++length;
       }
+      debug_add_node(item) ; 
    }
 
    Node *get_nth(int n) // One-Based Index
@@ -124,6 +236,7 @@ public:
          temp->next = head;
          head = temp;
       }
+      debug_add_node(temp) ; 
       ++length;
    }
 
@@ -133,11 +246,13 @@ public:
 
       if (length == 1)
       {
+         debug_remove_node(head) ; 
          head = tail = nullptr;
       }
       else
       {
          Node *temp = head;
+         debug_remove_node(temp);
          head = head->next;
          temp = nullptr;
       }
@@ -153,11 +268,13 @@ public:
       }
       if (length == 1)
       {
+         debug_remove_node(head);
          head = tail = nullptr;
       }
       else
       {
          Node *newTail = get_nth(length - 1);
+         debug_remove_node(newTail->next);
          tail = newTail;
          tail->next = nullptr;
       }
@@ -199,11 +316,13 @@ public:
       if (length == 0 || idx == length)
       {
          insert_end(value);
+         debug_add_node(curr) ; 
          return;
       }
       else if (idx == 1)
       {
          insert_front(value);
+         debug_add_node(curr) ; 
          return;
       }
       else
@@ -212,6 +331,7 @@ public:
          curr->next = prev->next;
          prev->next = curr;
       }
+      debug_add_node(curr);
       length++;
    }
 
@@ -225,6 +345,7 @@ public:
       }
       if (length == 1)
       {
+         debug_remove_node(head) ; 
          delete head;
          head = nullptr;
          tail = nullptr;
@@ -235,12 +356,14 @@ public:
          {
             Node *temp = head;
             head = temp->next;
+            debug_remove_node(temp) ; 
             delete temp;
             temp = nullptr;
          }
          else if (idx == length)
          {
             Node *temp = get_nth(idx - 1);
+            debug_remove_node(tail) ; 
             delete tail;
             tail = temp;
             tail->next = nullptr;
@@ -250,6 +373,7 @@ public:
             Node *temp = get_nth(idx - 1);
             Node *toDelete = temp->next;
             temp->next = toDelete->next;
+            debug_remove_node(toDelete) ; 
             delete toDelete;
             toDelete = nullptr;
          }
@@ -297,49 +421,57 @@ public:
    // 5 , 4 , 3 , 2 , 1
    // swap(get_nth(i) , get_nth(size-i+1))
 
-  void reverse()
-{
-   if (length == 0)
+   void reverse()
    {
-      empty_list();
-      return;
-   }
-
-   for (int i = 1; i <= length / 2; i++)
-   {
-      Node* curr = get_nth(i);
-      Node* reverse = get_nth(length - i + 1);
-      std::swap(curr->data, reverse->data);
-   }
-}
- 
-   // 11 12 13 14 15
-   //value 12 
-   // 11 , 13 , 14 , 15 
- void remove_value(int value){
-   if (length == 0){
-      empty_list() ; 
-   }
-   if(value == head->data){
-      pop_front() ; 
-      return  ; 
-   }
-
-   if(value ==tail->data){
-      pop_back() ; 
-      tail = get_nth(length) ; 
-      tail->next = nullptr ; 
-      return ; 
-   }
-   int count{1} ; 
-   for(Node*curr = head ; curr ; curr = curr->next){
-      if(curr->data == value){
-         erase(count) ; 
-         break ;
+      if (length == 0)
+      {
+         empty_list();
+         return;
       }
-      ++count ; 
+
+      for (int i = 1; i <= length / 2; i++)
+      {
+         Node *curr = get_nth(i);
+         Node *reverse = get_nth(length - i + 1);
+         std::swap(curr->data, reverse->data);
+      }
    }
-   --length ; 
- }
+
+   // 11 12 13 14 15
+   // value 12
+   // 11 , 13 , 14 , 15
+   void remove_value(int value)
+   {
+      if (length == 0)
+      {
+         empty_list();
+      }
+      if (value == head->data)
+      {
+         debug_remove_node(head) ; 
+         pop_front();
+         return;
+      }
+
+      if (value == tail->data)
+      {
+         debug_remove_node(tail) ; 
+         pop_back();
+         tail = get_nth(length);
+         tail->next = nullptr;
+         return;
+      }
+      int count{1};
+      for (Node *curr = head; curr; curr = curr->next)
+      {
+         if (curr->data == value)
+         {
+            erase(count);
+            break;
+         }
+         ++count;
+      }
+      --length;
+   }
 };
 #endif

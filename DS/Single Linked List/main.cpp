@@ -78,6 +78,9 @@ void basic()
     printLine("Delete an Element that has the value 66") ; 
     list.remove_value(66) ; // 77 , 12 , 11 
     list.print() ; 
+
+
+    cout<<"\nNo RTE !!"<<endl ;
 }
 
 void Easy()
