@@ -151,7 +151,7 @@ public:
    {
       if (length == 0)
       {
-         std::cout << "The list is empty !!" << std::endl;
+         std::cout << "The list is empty !!" << '\n';
          return;
       }
    }
@@ -159,7 +159,7 @@ public:
    {
       if (length == 0)
       {
-         std::cout << "Empty list" << std::endl;
+         std::cout << "Empty list" << '\n';
          return;
       }
       for (Node *curr = head; curr; curr = curr->next)
@@ -263,7 +263,7 @@ public:
    {
       if (length == 0)
       {
-         std::cout << "Nothing to pop !!" << std::endl;
+         std::cout << "Nothing to pop !!" << '\n';
          return;
       }
       if (length == 1)
@@ -286,7 +286,7 @@ public:
    {
       if (length == 0)
       {
-         std::cout << "The list is already empty !! " << std::endl;
+         std::cout << "The list is already empty !! " << '\n';
          return -1;
       }
       return head->data;
@@ -297,7 +297,7 @@ public:
    {
       if (length == 0)
       {
-         std::cout << "The list is already empty !! " << std::endl;
+         std::cout << "The list is already empty !! " << '\n';
          return -1;
       }
       return tail->data;
@@ -309,7 +309,7 @@ public:
       Node *curr = new Node(value);
       if (idx >= length + 1)
       {
-         std::cout << "Out of boundries" << std::endl;
+         std::cout << "Out of boundries" << '\n';
          return;
       }
 
@@ -340,7 +340,7 @@ public:
    {
       if (length == 0)
       {
-         std::cout << "There are no elements to delete!" << std::endl;
+         std::cout << "There are no elements to delete!" << '\n';
          return;
       }
       if (length == 1)
@@ -472,6 +472,29 @@ public:
          ++count;
       }
       --length;
+   }
+   
+   //Compare between 2 lists
+   bool is_same(List &a)
+   {
+      if (size() != a.size())
+      {
+         return false;
+      }
+      Node *curr = head;
+      Node *aCurr = a.head;
+
+      while (curr != nullptr && aCurr != nullptr)
+      {
+         if (curr->data != aCurr->data)
+         {
+            return false;
+         }
+         curr = curr->next;
+         aCurr = aCurr->next;
+      }
+
+      return true;
    }
 };
 #endif

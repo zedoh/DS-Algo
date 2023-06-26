@@ -69,23 +69,31 @@ void basic()
     cout << list.value_from_end(3) << endl;
     cout << "\n";
 
-    printLine("Let's REVERSE the list ") ; 
-    list.reverse() ; // 77 66 12 11
-    list.print() ;
+    printLine("Let's REVERSE the list ");
+    list.reverse(); // 77 66 12 11
+    list.print();
     cout << '\n';
 
+    printLine("Delete an Element that has the value 66");
+    list.remove_value(66); // 77 , 12 , 11
+    list.print();
 
-    printLine("Delete an Element that has the value 66") ; 
-    list.remove_value(66) ; // 77 , 12 , 11 
-    list.print() ; 
-
-
-    cout<<"\nNo RTE !!"<<endl ;
+    cout << "\nNo RTE !!" << endl;
 }
 
 void Easy()
 {
     // Add your test code for Easy functions here
+    List a;
+    List b;
+    a.insert_end(77);
+    a.insert_end(12);
+    a.insert_end(66);
+
+    b.insert_end(77);
+    b.insert_end(12);
+    b.insert_end(11);
+    cout << boolalpha<<a.is_same(b) << '\n';
 }
 
 void Medium()
@@ -95,7 +103,10 @@ void Medium()
 
 int main()
 {
-    basic();
+    // basic();
+
+    // cout<<"\n\n\nEASY HW TESTING\n" ; 
+    Easy();
 
     return 0;
 }
