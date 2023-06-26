@@ -1,4 +1,5 @@
 #include <iostream>
+#include "NoTail.hpp" // Linked List without tail or length !!
 #include "List.hpp"
 
 using namespace std;
@@ -93,7 +94,19 @@ void Easy()
     b.insert_end(77);
     b.insert_end(12);
     b.insert_end(11);
-    cout << boolalpha<<a.is_same(b) << '\n';
+    cout << boolalpha << a.is_same(b) << '\n';
+}
+
+void Notail()
+{
+    NoTailList a;
+    a.add_element(11);
+    a.add_element(12);
+    a.add_element(133) ; 
+    a.print();
+
+
+    cout<<"The tail of that list is : "<<a.getTail()->data<<'\n' ; 
 }
 
 void Medium()
@@ -105,8 +118,8 @@ int main()
 {
     // basic();
 
-    // cout<<"\n\n\nEASY HW TESTING\n" ; 
-    Easy();
-
+    // cout<<"\n\n\nEASY HW TESTING\n" ;
+    //    Easy();
+    Notail();
     return 0;
 }
