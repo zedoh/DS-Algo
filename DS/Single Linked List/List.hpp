@@ -475,7 +475,7 @@ public:
    }
    
    //Compare between 2 lists
-   bool is_same(List &a)
+   bool is_same( List &a)
    {
       if (size() != a.size())
       {
@@ -496,5 +496,28 @@ public:
 
       return true;
    }
+
+   void delete_node_with_key(int value)
+   {
+      if (length == 0)
+      {
+         std::cout << "Empty list" << '\n';
+         return;
+      }
+      else{
+         int count{0} ; 
+         for (Node *temp = head; temp; temp = temp->next)
+         {
+            if (temp->data == value)
+            {
+               debug_remove_node(temp) ; 
+               erase(count);
+               break ; 
+            }
+            ++count ; 
+         }
+      }
+   }
 };
+
 #endif

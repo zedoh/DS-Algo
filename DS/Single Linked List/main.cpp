@@ -102,24 +102,32 @@ void Notail()
     NoTailList a;
     a.add_element(11);
     a.add_element(12);
-    a.add_element(133) ; 
+    a.add_element(133);
     a.print();
 
-
-    cout<<"The tail of that list is : "<<a.getTail()->data<<'\n' ; 
+    cout << "The tail of that list is : " << a.getTail()->data << '\n';
 }
 
+// Easy->Medium && Medium challanges tests go here .
 void Medium()
-{
-    // Add your test code for Medium to Hard functions here
+{ 
+    List a ; 
+    a.insert_end(10) ; 
+    a.insert_end(11) ; 
+    a.insert_end(12) ; 
+    a.print() ; 
+    a.delete_node_with_key(11) ; 
+    a.print() ; 
+
 }
 
 int main()
 {
     // basic();
-
     // cout<<"\n\n\nEASY HW TESTING\n" ;
-    //    Easy();
-    Notail();
+    // Easy();
+    // Notail();
+    Medium() ; 
+
     return 0;
 }
