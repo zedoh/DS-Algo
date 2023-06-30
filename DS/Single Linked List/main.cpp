@@ -1,12 +1,12 @@
 #include <iostream>
-#include "NoTail.hpp" // Linked List without tail or length !!
+//#include "NoTail.hpp" // Linked List without tail or length !!
 #include "List.hpp"
 
 using namespace std;
 
 void printLine(const string &text)
 {
-    cout << "***********************************************************\n";
+    cout << "\n__________________________________________________________\n";
     cout << text << '\n';
     cout << "***********************************************************\n";
 }
@@ -97,7 +97,7 @@ void Easy()
     cout << boolalpha << a.is_same(b) << '\n';
 }
 
-void Notail()
+/*void Notail()
 {
     NoTailList a;
     a.add_element(11);
@@ -107,17 +107,46 @@ void Notail()
 
     cout << "The tail of that list is : " << a.getTail()->data << '\n';
 }
+*/
+//***********************************************************//
 
 // Easy->Medium && Medium challanges tests go here .
-void Medium()
+void EasyToMedium()
 { 
     List a ; 
+    a.insert_end(1) ; 
+    a.insert_end(2) ; 
+    a.insert_end(3) ; 
+    a.insert_end(4) ; 
     a.insert_end(10) ; 
-    a.insert_end(11) ; 
-    a.insert_end(12) ; 
+    printLine("Normal print") ; 
     a.print() ; 
-    a.delete_node_with_key(11) ; 
+
+    printLine("Swapping 2 pairs") ; 
+    a.swap_pairs() ; 
     a.print() ; 
+    a.swap_pairs() ; 
+
+    printLine("Let's Reverse all this Data !! ") ; 
+    a.reverse() ; 
+    a.print() ;
+    // cout << "\n\nLet's check for the addresses of the list !!\n";
+    // a.debug_print_address() ; 
+    a.reverse() ; 
+    printLine("Deleting the value of 4") ; 
+    a.delete_node_with_key(4) ; 
+    a.print() ; 
+    cout<<"\n" ; 
+
+    printLine("Deleting the even positions in the list") ; 
+    a.delete_even() ; 
+    a.print() ; 
+
+
+    // a.insert_sorted(6) ; 
+    // a.insert_sorted(7) ; 
+    // a.insert_sorted(11) ; 
+    // a.print() ; 
 
 }
 
@@ -127,7 +156,7 @@ int main()
     // cout<<"\n\n\nEASY HW TESTING\n" ;
     // Easy();
     // Notail();
-    Medium() ; 
+    EasyToMedium() ; 
 
     return 0;
 }
