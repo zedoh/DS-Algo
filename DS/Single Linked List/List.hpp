@@ -48,26 +48,41 @@ private:
       delete node;
    }
 
-   void delete_next_node(Node *node)
-   {
-      assert(node);
+  void delete_next_node(Node* node) {
+		// Delete the next of the current node
+		// Handle if next is tail case
+		assert(node);
 
-      Node *toDelete = node->next;
-      bool isTail = toDelete == tail;
+		Node* to_delete = node->next;
+		bool is_tail = to_delete == tail;
 
-      node->next = toDelete->next;
-      delete_node(toDelete);
+		// node->next in middle to delete
+		node->next = node->next->next;
 
-      if (isTail)
-      {
-         tail = node;
-      }
-   }
+		delete_node(to_delete);
+		if (is_tail)
+			tail = node;
+	}
+ 
 
    void add_node(Node *node)
    {
       debug_add_node(node);
       ++length;
+   }
+
+   //Utility function to return the idx of a certain node.
+   int get_idx(Node*node){
+      if(length == 0) return -1 ; 
+      
+      int count{0} ; 
+      for(Node *curr = head ; curr ; curr=curr->next){
+         if(node == curr){
+            return count ; 
+         }
+         ++count ; 
+      }
+      return -1 ; 
    }
 
 public:
@@ -206,16 +221,14 @@ public:
       {
          head = tail = item;
          tail->next = nullptr;
-         ++length;
       }
       else
       {
          tail->next = item;
          tail = item;
          tail->next = nullptr;
-         ++length;
       }
-      debug_add_node(item);
+      add_node(item) ;
    }
 
    Node *get_nth(int n) // One-Based Index
@@ -276,17 +289,23 @@ public:
 
       if (length == 1)
       {
-         debug_remove_node(head);
+         delete_node(head) ; 
          head = tail = nullptr;
+         return ; 
+      }
+      else if(length ==2 ){
+         delete_node(tail) ; 
+         head->next  = nullptr;
+         tail = head;
       }
       else
       {
          Node *temp = head;
-         debug_remove_node(temp);
          head = head->next;
+         delete_node(temp) ; 
          temp = nullptr;
+         return ; 
       }
-      --length;
    }
 
    void pop_back()
@@ -634,9 +653,62 @@ public:
          return;
       }
       else{
-         std::swap(head, tail);
-         return;
+         Node *beforeLast = get_nth(length-1) ; 
+         Node *tempHead = head; 
+         tail->next = head->next ; 
+         beforeLast->next = head;
+         head = tail   ; 
+         tail = tempHead ;
+         tail->next = nullptr ; 
+         return ;
       }
    }
+
+   void insert_node_end(Node *node){
+      if(length == 0){
+         return ; 
+      }else{
+         tail->next = node ; 
+         tail = node ; 
+         tail->next = nullptr ; 
+         add_node(node) ; 
+      }
+   }
+   
+   void rotate_left(long long  k){
+      k = k%length ; 
+      if (length == 0) return ; 
+      else{
+         for(long long i = 0 ; i < k ; ++i){
+            Node*prv = get_nth(2) ; 
+            tail->next = head; 
+            head->next = nullptr ; 
+            tail = head; 
+            head = prv ; 
+           tail->next = nullptr ;  
+         }
+         return ; 
+      }
+   }
+
+   void remove_duplicates_from_not_sorted() {		// O(n^2) time - O(1) memory
+		if (length <= 1)
+			return;
+			
+		// Just like 2 nested loops, find all duplicates and delete
+
+		for (Node *cur1 = head; cur1; cur1 = cur1->next) {
+			for (Node *cur2 = cur1->next, *prv = cur1; cur2;) {
+				if(cur1->data == cur2->data) {
+					delete_next_node(prv);
+					cur2 = prv->next;
+				} else
+					prv = cur2, cur2 = cur2->next;	// normal move
+         
+			}
+		}
+		debug_verify_data_integrity();
+	}
 };
+
 #endif

@@ -7,7 +7,7 @@ using namespace std;
 void printLine(const string &text)
 {
     cout << "\n__________________________________________________________\n";
-    cout << text << '\n';
+    cout << text<<'\n';
     cout << "***********************************************************\n";
 }
 
@@ -150,13 +150,45 @@ void EasyToMedium()
 
 }
 
+void Medium(){
+    List list ; 
+    list.insert_end(1) ; 
+    list.insert_end(2) ; 
+    list.insert_end(3) ; 
+    list.insert_end(4) ; 
+    list.insert_end(4) ; 
+    list.insert_end(4) ; 
+    list.insert_end(5) ; 
+    list.insert_end(17) ; 
+    list.insert_end(51) ; 
+    list.insert_end(3) ;
+
+        cout<<list.size()<<endl ;
+    printLine("Normal Print") ; 
+    list.print() ; 
+
+    printLine("Swapping the head and the tail") ; 
+    list.swap_head_tail() ; 
+    list.print() ; 
+
+
+    printLine("Rotating the list")  ; 
+    list.rotate_left(1000000000000) ; 
+    list.print() ; 
+
+    printLine("Removing duplicates") ;
+    list.remove_duplicates_from_not_sorted() ;
+    list.print();
+
+}
 int main()
 {
     // basic();
     // cout<<"\n\n\nEASY HW TESTING\n" ;
     // Easy();
     // Notail();
-    EasyToMedium() ; 
+    // EasyToMedium() ; 
+    Medium() ; 
 
     return 0;
 }
