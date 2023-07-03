@@ -664,16 +664,6 @@ public:
       }
    }
 
-   void insert_node_end(Node *node){
-      if(length == 0){
-         return ; 
-      }else{
-         tail->next = node ; 
-         tail = node ; 
-         tail->next = nullptr ; 
-         add_node(node) ; 
-      }
-   }
    
    void rotate_left(long long  k){
       k = k%length ; 
@@ -709,6 +699,45 @@ public:
 		}
 		debug_verify_data_integrity();
 	}
+
+   void RemoveLastOcc(int value){
+      if(!length) return ; 
+
+      Node *delete_my_next_node = nullptr ; 
+      bool is_found = false ; 
+
+      for(Node *curr =head , *prv = nullptr ; curr ;prv=curr , curr = curr->next){
+         if(curr->data == value){
+            is_found = true , delete_my_next_node = prv ;
+         }
+      }
+      if(is_found){
+         if(delete_my_next_node) delete_next_node(delete_my_next_node) ; 
+         else{
+            pop_front()  ;
+         }
+      }
+      debug_verify_data_integrity() ; 
+   }
+
+   void MoveBack(int value){
+      if(length <= 1)
+         return;
+
+      if(head->data == value) {
+         insert_end(value) ; 
+         pop_front() ; 
+      }else{
+      for(Node *curr=  head , *prv= head  ; curr ; curr=curr->next){  
+         if(curr->data == value && curr !=tail){
+            delete_next_node(prv) ; 
+            insert_end(value) ;
+         }
+         prv = prv->next;
+      }
+      }
+   }
+   
 };
 
 #endif
