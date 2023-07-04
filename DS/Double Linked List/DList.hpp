@@ -176,6 +176,39 @@ public:
             second->prev = first;
     }
 
+    void embed_after(Node *before, int value)
+    {
+        Node *toadd = new Node(value);
+        ++length;
+        debug_add_node(toadd);
+
+        Node *after = before->next;
+        link(before, toadd);
+        link(toadd, after);
+    }
+
+    Node *delete_and_link(Node *curr){
+        // Remove this node , but connect its neighbours
+        Node *ret = curr->prev ; 
+        link(curr->prev , curr->next) ; 
+        delete_node(curr) ; 
+        
+        return ret ; 
+    }
+
+    int numberDuplicates(int value){ //How many times does a certain value exist in the list ?
+        if(!length) return -1; 
+
+        int count{0} ; 
+        for(Node*curr= head ; curr ; curr=curr->next){
+            if(curr->data == value){
+                ++count ; 
+            }
+        }
+        return count ;
+    }
+
+
     //----------------------BASIC FUNCTIONS---------------------------//
     void print()
     {
@@ -218,17 +251,6 @@ public:
         }
         add_node(add);
         debug_verify_data_integrity();
-    }
-
-    void embed_after(Node *before, int value)
-    {
-        Node *toadd = new Node(value);
-        ++length;
-        debug_add_node(toadd);
-
-        Node *after = before->next;
-        link(before, toadd);
-        link(toadd, after);
     }
 
     void insert_sorted(int value)
@@ -285,6 +307,81 @@ public:
         else if (!length)
             head = tail = nullptr;
         debug_verify_data_integrity();
+    }
+
+    void delete_node_with_key(int value){
+        if(!length) return ; 
+        if(head->data == value) delete_front() ; 
+        else{
+            for(Node *curr =head ; curr ; curr=curr->next){
+                if(curr->data == value){
+                    curr = delete_and_link(curr) ; 
+                    if(!curr->next){
+                        tail = curr ; 
+                    }
+                    break ;
+                }
+            }
+        }
+        debug_verify_data_integrity();
+    }
+
+    void delete_all_nodes_with_key(int value){
+        if(!length) return ; 
+        int copies = numberDuplicates(value) ; //Number of copies for a certain value !! 
+
+        for(int i = 0 ; i < copies ; ++i){ //O(N^2) Time , O(1) Space
+            if (head->data == value)
+            {
+                delete_front();
+            }
+            else
+            {
+                for (Node *curr = head; curr; curr = curr->next)
+                {
+                    if (curr->data == value)
+                    {
+                        curr = delete_and_link(curr);
+                        if (!curr->next)
+                        {
+                            tail = curr;
+                        }
+                        continue;
+                    }
+                }
+            }
+        }
+        debug_verify_data_integrity();
+    }
+
+
+    void delete_even(){
+        if(length<=1) return ; 
+
+        for(Node *curr = head ; curr && curr->next ; curr = curr->next){
+            delete_and_link(curr->next) ; 
+            if(!curr->next){
+                tail = curr ; 
+                break ; 
+            }
+        }
+        debug_verify_data_integrity() ; 
+    }
+
+    void delete_odd(){
+        insert_front(-1) ; 
+        delete_even() ; 
+        delete_front() ; 
+    }
+
+    bool is_palindrome(){
+        if(length<=1) return false  ; 
+        for(Node * curr = head , *last = tail ; curr,last ; curr = curr->next , last = last->prev){
+            if(curr->data != last->data){
+                 return false ; 
+            }
+        }
+        return true ; 
     }
 };
 
