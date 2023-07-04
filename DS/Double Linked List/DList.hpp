@@ -375,11 +375,13 @@ public:
     }
 
     bool is_palindrome(){
-        if(length<=1) return false  ; 
-        for(Node * curr = head , *last = tail ; curr,last ; curr = curr->next , last = last->prev){
+        if(length<=1) return true  ; 
+        int len {0} ; 
+        for(Node * curr = head , *last = tail ; curr,last,len<=length/2 ; curr = curr->next , last = last->prev){
             if(curr->data != last->data){
                  return false ; 
             }
+            ++len ; 
         }
         return true ; 
     }
