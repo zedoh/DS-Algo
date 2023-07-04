@@ -31,9 +31,23 @@ void basic1(){
     list.insert_sorted(22312) ; 
     list.insert_sorted(500) ; 
     list.print() ; 
+
+    // msg("Deleting the front of 3 elements") ; 
+    // list.delete_front() ; 
+    // list.delete_front() ; 
+    // list.delete_front() ; 
+    // list.print() ; 
+
+
+    msg("Deleting the last 2 elements in the list") ; 
+    list.delete_end() ; 
+    list.delete_end() ; 
+    list.print() ; 
 }
 
 int main(){
     basic1() ; 
+
+    cout<<"\nNO RTE \n" ; 
     return 0 ;
 }

@@ -179,6 +179,8 @@ public:
       assert(length == (int)debug_data.size());
       assert(prev == tail); // last node is tail
    }
+
+
    ~List()
    {
       Node *curr = head;

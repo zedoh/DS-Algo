@@ -13,6 +13,12 @@ struct Node
     Node *next{};
     Node *prev{};
     Node(int data) : data(data) {}
+
+    void set(Node *next, Node *prev)
+    {
+        this->next = next;
+        this->prev = prev;
+    }
 };
 
 class DList
@@ -37,7 +43,6 @@ public:
         }
     }
 
-    //-----------------------------Debuging TOOLS----------------------------------------------//
     std::vector<Node *> debug_data; // add/remove nodes you use
 
     void debug_add_node(Node *node)
@@ -52,6 +57,8 @@ public:
         else
             debug_data.erase(it);
     }
+
+    //-----------------------------Debuging TOOLS----------------------------------------------//
     void debug_print_address()
     {
         for (Node *cur = head; cur; cur = cur->next)
@@ -68,11 +75,18 @@ public:
             std::cout << "nullptr\n";
             return;
         }
-        std::cout << node->data << " ";
-        if (node->next == nullptr)
-            std::cout << "X ";
+
+        if (node->prev == nullptr)
+            std::cout << "X\t";
         else
-            std::cout << node->next->data << " ";
+            std::cout << node->prev->data << "\t";
+
+        std::cout << " <= [" << node->data << "]\t => \t";
+
+        if (node->next == nullptr)
+            std::cout << "X\t";
+        else
+            std::cout << node->next->data << "\t";
 
         if (node == head)
             std::cout << "head\n";
@@ -111,37 +125,35 @@ public:
         {
             assert(head == nullptr);
             assert(tail == nullptr);
-            return;
         }
-
-        assert(head != nullptr);
-        assert(tail != nullptr);
-        assert(tail->next == nullptr);
-
-        if (length == 1)
-            assert(head == tail);
         else
         {
-            assert(head != tail);
-
-            if (length == 2)
-                assert(head->next == tail);
-            else if (length == 3)
-            {
-                assert(head->next);
-                assert(head->next->next == tail);
-            }
+            assert(head != nullptr);
+            assert(tail != nullptr);
+            if (length == 1)
+                assert(head == tail);
+            else
+                assert(head != tail);
+            assert(!head->prev);
+            assert(!tail->next);
         }
         int len = 0;
-        Node *prev = nullptr;
-        for (Node *cur = head; cur; prev = cur, cur = cur->next, len++)
-            assert(len < 10000); // Consider infinite cycle?
+        for (Node *cur = head; cur; cur = cur->next, len++)
+        {
+            if (len == length - 1) // make sure we end at tail
+                assert(cur == tail);
+        }
 
         assert(length == len);
         assert(length == (int)debug_data.size());
-        assert(prev == tail); // last node is tail
-    }
 
+        len = 0;
+        for (Node *cur = tail; cur; cur = cur->prev, len++)
+        {
+            if (len == length - 1) // make sure we end at head
+                assert(cur == head);
+        }
+    }
 
     void delete_node(Node *node)
     {
@@ -150,30 +162,11 @@ public:
         delete node;
     }
 
-    void delete_next_node(Node *node)
-    {
-        // Delete the next of the current node
-        // Handle if next is tail case
-        assert(node);
-
-        Node *to_delete = node->next;
-        bool is_tail = to_delete == tail;
-
-        // node->next in middle to delete
-        node->next = node->next->next;
-
-        delete_node(to_delete);
-        if (is_tail)
-            tail = node;
-    }
-
     void add_node(Node *node)
     {
         debug_add_node(node);
         ++length;
     }
-
-
     //-----------------------UTILITY----------------------------------------//
     void link(Node *first, Node *second)
     {
@@ -240,13 +233,15 @@ public:
 
     void insert_sorted(int value)
     {
-        if (!length || value <= head->data){
+        if (!length || value <= head->data)
+        {
             insert_front(value);
-            return ; 
+            return;
         }
-        if (tail->data <= value){
+        if (tail->data <= value)
+        {
             insert_end(value);
-            return ;
+            return;
         }
         else
         {
@@ -259,6 +254,37 @@ public:
                 }
             }
         }
+    }
+
+    void delete_front()
+    {
+        if (!length)
+            return;
+
+        Node *curr = head->next;
+        delete_node(head);
+        head = curr;
+
+        // Checking the changes in the list
+        if (head)
+            head->prev = nullptr;
+        else if (!length)
+            head = tail = nullptr;
+
+        debug_verify_data_integrity();
+    }
+    
+    void delete_end(){
+        if(!head) return ;
+        Node *temp = tail->prev ; 
+        delete_node(tail) ; 
+        tail = temp;
+
+        if (tail)
+            tail->next = nullptr;
+        else if (!length)
+            head = tail = nullptr;
+        debug_verify_data_integrity();
     }
 };
 
