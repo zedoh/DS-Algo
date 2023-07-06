@@ -1,4 +1,5 @@
 #include"STACK.hpp"
+// #include"Dstack.hpp"
 #include<iostream>
 #include<stack>
 using namespace std ; 
@@ -36,9 +37,47 @@ void basic(){
     cout<<st.peek() ; 
 }
 
+/*void DoubleStack()
+{
+    Dstack st(10) ; 
+    st.push(1 , 1) ; 
+    st.push(1 , 2) ; 
+    st.push(1 , 3) ; 
+    st.push(1 , 4) ; 
+    st.push(1 , 5) ; 
+    st.push(2, 15);
+    st.push(2, 14);
+    st.push(2, 13);
+    st.push(2, 12);
+    st.push(2, 11);
+
+    msg("First Stack!!!") ; 
+    st.display(1) ; 
+    split() ; 
+
+
+    msg("Second Stack!!!") ; 
+    st.display(2) ; 
+    split() ; 
+
+    msg("Poping the first element in the 2 stacks ") ; 
+    st.pop(1) ; 
+    st.pop(2) ; 
+    st.display(1) ; 
+    split() ; 
+    st.display(2) ; 
+    split() ; 
+
+    msg("Peeking the top element for both stacks!!") ; 
+    cout<<st.peek(1)<<'\n' ; 
+    cout<<st.peek(2)<<'\n' ; 
+    split() ; 
+
+}*/
 
 int main(){
-    basic() ; 
-    
-    cout<<"\nNO RTE\n" ; 
+    // basic() ; 
+    // DoubleStack() ;
+    cout << "\nNO RTE\n";
+
 }
