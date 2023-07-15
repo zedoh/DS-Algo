@@ -1,6 +1,6 @@
 # Stack Implementation
-- [**Array Based Implementation**](/DS/Stack/STACK.hpp#L1) 
-- [**LinkedList Based Implementation**](/DS/Stack/Lstack.hpp#L1)
+- [**Array Based Implementation**](/DS/Stack/STACK.hpp) 
+- [**LinkedList Based Implementation**](/DS/Stack/Lstack.hpp)
 
 
 # Easy Challanges Solutions
