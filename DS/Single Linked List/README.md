@@ -214,87 +214,14 @@ public:
 
 ---
 # Easy To Medium Challanges
-## 1. Delete with key
-```cpp
-   void delete_node_with_key(int value)
-   {
-      if(length<0)return ; 
-      else if(head->data ==value){
-         head = tail =nullptr ; 
-      }
-      else{
-         for(Node* curr = head->next , *prv = head ; curr; curr=curr->next){
-            if(curr->data == value){
-               delete_next_node(prv)  ; 
-               break; 
-            }
-            prv = prv->next ; 
-         }
-      }
-   }
-```
----
-## 2. Swap each pair values 
-```cpp
-   void swap_pairs()
-   {
-      if (length == 0)
-      {
-         std::cout << "Empty List" << '\n';
-         return;
-      }
-      int len = length;
-      len /= 2;
-      for (Node *curr = head; curr; curr = curr->next)
-      {
-         if (len == 0)
-         {
-            break;
-         }
-         std::swap(curr->data, curr->next->data);
-         --len;
-         curr = curr->next;
-      }
-   }
-```
----
-## 3. Reverse List nodes
-```CPP
-   void reverse(){
-      if(length<=1)  return ; 
+1. [Delete Node With Key](/DS/Single%20Linked%20List/List.hpp#L528-L543)
+2. [Swap Each Pair Values](/DS/Single%20Linked%20List/List.hpp#L545-L564)
 
-      tail = head  ; 
-      Node* prv = head ; 
-      head = head ->next   ; 
+3. [Reverse List](/DS/Single%20Linked%20List/List.hpp#L566-L585)
 
-      while(head){
-         Node *next = head -> next ; 
-         head->next = prv ; 
-         prv = head ; 
-         head = next ; 
-      } 
-      head = prv ; 
-      tail->next = nullptr ; 
-      debug_verify_data_integrity() ; 
-   }
-```
----
-## 4. Delete Even Positions
-```CPP
-   void delete_even(){
-      if(length<=1) return ; 
-
-      for(Node *curr = head->next , *prv = head;curr;){
-         delete_next_node(prv)  ; 
-         if(!prv->next) break ; 
-         curr = prv->next->next ; 
-         prv = prv->next ; 
-      }
-      debug_verify_data_integrity();
-   }
-```
-- In this problem , there are 2 utility functions used :
-   -  `delete_node(Node *node)` and `delete_next_node(Node *node)` :
+4. [Delete Even Positions](/Ds/Single%20Linked%20List/List.hpp#L588-L602)
+   - In this problem , there are 2 utility functions used :
+    -  `delete_node(Node *node)` and `delete_next_node(Node *node)` :
     ```CPP
    void delete_node(Node *node){
       debug_remove_node(node);
@@ -316,53 +243,5 @@ public:
       }
    }
       ```
----
-## 5. Insert To Be Sorted
-```CPP
-   void insert_sorted(int value){
-      Node *temp = new Node(value);
-      if(length == 0)
-      {
-         head = temp ; 
-         debug_add_node(head) ; 
-         head->next = nullptr ; 
-         tail = head ; 
-         ++length ; 
-         return ; 
-      }
-      if(length == 1){
-         debug_add_node(temp) ; 
-         tail = temp ; 
-         head->next = tail  ; 
-         tail->next = nullptr ; 
-         ++length ; 
-         return ; 
-      }
-      if (temp->data >= tail->data)
-      {
-         tail->next = temp;
-         debug_add_node(temp);
-         tail = temp;
-         tail->next = nullptr;
-         ++length;
-         return;
-      }
-
-      int count{0};
-      for (Node *curr = head->next, *prv = head; curr; curr = curr->next)
-      {
-         if (temp->data <= curr->data && temp->data >= prv->data)
-         {
-            prv->next = temp ; 
-            temp->next  = curr ; 
-            debug_add_node(temp);
-            ++length ; 
-            break ; 
-         }
-         prv = prv->next ; 
-         ++count ;
-      }
-      debug_verify_data_integrity();
-   }
-```
-*`Note`* : I didn't use here the utility functions in some functions , as I solve the problems not in order . 
+5.  [Insert To Be Sorted](/DS/Single%20Linked%20List/List.hpp#L604-L650)
+      - `Note`* : I didn't use here the utility functions in some functions , as I solve the problems not in order . 
