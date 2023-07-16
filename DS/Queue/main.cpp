@@ -1,6 +1,7 @@
 #include<iostream>
 #include"cqueue.hpp" // Circular Queue
 #include"Queue.hpp"
+#include "Lqueue.hpp"
 using namespace std  ; 
 
 void printLine(const string &text){
@@ -49,10 +50,31 @@ void circular(){
     // cq.display() ; 
 }
 
+void LinkedQueue(){
+    LQueue lq  ; 
+    lq.enqueue(1) ;
+    lq.enqueue(2) ;
+    lq.enqueue(3) ;
+    lq.enqueue(4) ;
+
+    printLine("Normal Print") ; 
+    lq.display() ; 
+
+    cout<<"Front "<<lq.front()<<'\t'<<"Rear "<<lq.rear()<<'\n' ;
+
+    printLine("Deleting an Element")  ; 
+    lq.dequeue() ; 
+    lq.display() ; 
+
+    cout<<"Front "<<lq.front()<<'\t'<<"Rear "<<lq.rear()<<'\n' ;
+
+}
+
 
 int main(){
     // basic() ; 
-    circular() ; 
+    // circular() ; 
+    LinkedQueue() ; 
 
     cout<<"\nNo RTE\n" ; 
     return  0 ; 
