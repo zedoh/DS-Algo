@@ -10,5 +10,5 @@ For each data structure, there is an implementation and challenges solution. Cha
 - [Linked List](/DS/Single%20Linked%20List/)
 - [Double Linked List](/DS/Double%20Linked%20List/)
 - [Stack](/DS/Stack/)
-- Queue **TODO**
+- [Queue](/DS/Queue/)
 - Binary Tree **TODO**
