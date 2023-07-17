@@ -5,7 +5,7 @@
 
 ---
 ## Easy Challenges
-1. [Deque](/DS/Queue/Deque.hpp)
+- [Deque](/DS/Queue/Deque.hpp)
 2. [Implement a stack using a single Queue](/DS/Queue/StackQ.hpp)
 3. [Implement a Queue using a 2 stacks](/DS/Queue/TwoStacks.hpp#L24-L38)
     - Implementing Queue functionalities using 2 stack objects.
