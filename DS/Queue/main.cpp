@@ -4,7 +4,7 @@
 #include "Lqueue.hpp" // Linked List Based Queue
 #include "Deque.hpp" // Simple Implmentation for the Deque container
 #include"StackQ.hpp" // Implementation for the stack based on Queue
-#include"2stack.hpp" //Queue Implementation using 2 stack objects
+#include"TwoStacks.hpp" //Queue Implementation using 2 stack objects
 using namespace std  ; 
 
 void printLine(const string &text){
