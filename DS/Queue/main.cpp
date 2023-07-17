@@ -1,7 +1,10 @@
 #include<iostream>
 #include"cqueue.hpp" // Circular Queue
-#include"Queue.hpp"
-#include "Lqueue.hpp"
+#include"Queue.hpp" // Array Based Queue
+#include "Lqueue.hpp" // Linked List Based Queue
+#include "Deque.hpp" // Simple Implmentation for the Deque container
+#include"StackQ.hpp" // Implementation for the stack based on Queue
+#include"2stack.hpp" //Queue Implementation using 2 stack objects
 using namespace std  ; 
 
 void printLine(const string &text){
@@ -70,11 +73,54 @@ void LinkedQueue(){
 
 }
 
+void DQ(){
+    Deque dq(6) ;
+    dq.enqueue_front(3) ; 
+    dq.enqueue_front(2);
+	dq.enqueue_rear(4);
+	dq.enqueue_front(1);
+	dq.enqueue_front(5);
+	dq.enqueue_front(6);
+	dq.display();	// 1 2 3 4
+
+    printLine("Normal Printing for the Deque") ; 
+    dq.display() ; 
+
+}
+
+void STACK(){
+    StackQ st(3) ; 
+    st.push(1) ; 
+    st.push(2) ; 
+    st.push(3) ;  
+
+    while(!st.IsEmpty()){
+        cout<<st.peek()<<'\t' ; 
+        st.pop() ; 
+    }
+
+}
+
+void stk2(){ //TESTING Queue using 2 stack Objects !!
+    QUEUE q(4) ; 
+    q.enqueue(1) ; 
+    q.enqueue(2) ; 
+    q.enqueue(3) ; 
+    q.enqueue(4) ; 
+
+    while(!q.IsEmpty()){
+        cout<<q.dequeue()<<'\t' ;  
+    }cout<<'\n' ; 
+    
+}
 
 int main(){
     // basic() ; 
     // circular() ; 
-    LinkedQueue() ; 
+    // LinkedQueue() ; 
+    // DQ() ; 
+    // STACK() ; 
+    stk2() ; 
 
     cout<<"\nNo RTE\n" ; 
     return  0 ; 
