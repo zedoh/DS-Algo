@@ -1,3 +1,37 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:bc58b968d412b6fa9dbcb302eaa7cf8f99feeeeba49ea8bdfe1c0ee0a0dd3531
-size 507
+#ifndef _LQ_
+#define _LQ_
+
+#include"../Single Linked List/List.hpp"
+
+class LQueue{
+    List list;
+
+public: 
+
+    void enqueue(int value){
+        list.insert_end(value) ; 
+    }
+
+    void dequeue(){
+        list.pop_front() ; 
+    }
+
+    bool IsEmpty(){
+        return list.empty() ; 
+    }
+
+    void display(){
+        list.print() ; 
+    }
+    
+    int front(){
+        return list.front() ; 
+    }
+
+    int rear(){
+        return list.back() ; 
+    }
+    
+} ; 
+
+#endif
