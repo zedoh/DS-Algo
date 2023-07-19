@@ -7,7 +7,7 @@
 ## Easy Challenges
 - [Deque](/DS/Queue/Deque.hpp)
 - [Implement a stack using a single Queue](/DS/Queue/StackQ.hpp)
-- [Implement a Queue using a 2 stacks](/DS/Queue/TwoStacks.hpp#L24-L38)
+- [Implement a Queue using a 2 stacks objects](/DS/Queue/TwoStacks.hpp#L24-L38)
     - Implementing Queue functionalities using 2 stack objects.
     - `dequeue()` function's *Time Complexity* must remain $O(1)$ . 
 - [Implement a Queue using a 2 stack objects](/DS/Queue/TwoStacks.hpp#L40-L52)
