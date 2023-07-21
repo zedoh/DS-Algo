@@ -15,6 +15,8 @@ void test1(){
     tree.print_inorder() ; 
 
     cout<<"Max Value: "<<tree.MaxValue() ; 
+    cout<<'\n' ;  
+    cout<<"Max Depth: "<<tree.MaxDepth() ; 
 }
 
 int main(){

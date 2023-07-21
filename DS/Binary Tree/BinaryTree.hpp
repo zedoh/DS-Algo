@@ -75,6 +75,14 @@ class BinaryTree{
             return TreeMax(root) ; 
         }
 
+        int _MaxDepth(TreeNode *root){
+            if(!root) return 0 ; 
+            return 1+std::max(_MaxDepth(root->right),_MaxDepth(root->left)) ; 
+        }
+        int MaxDepth(){
+            return _MaxDepth(root)  ;
+        }
+
 }; 
   
 #endif
