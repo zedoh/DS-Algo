@@ -25,9 +25,9 @@ class BinaryTree{
 
         void _print_inorder(TreeNode *node){
             if(!node) return ; 
-            print_inorder(node->right) ; 
+           _print_inorder(node->left) ; 
             std::cout<<node->data<<'\t' ;
-            print_inorder(node->left) ;  
+            _print_inorder(node->right) ;          
         }
 
     public:
@@ -61,6 +61,18 @@ class BinaryTree{
         void print_inorder(){
             _print_inorder(root) ; 
             std::cout<<'\n' ; 
+        }
+
+        int mx = INT_MIN ; 
+        int TreeMax(TreeNode *curr){
+            if(!curr) return mx;
+            mx = std::max(curr->data , mx);
+            TreeMax(curr->right) ; 
+            TreeMax(curr->left) ; 
+            return mx ; 
+        }
+        int MaxValue(){
+            return TreeMax(root) ; 
         }
 
 }; 
