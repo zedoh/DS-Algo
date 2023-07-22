@@ -1,5 +1,5 @@
 # Easy Challanges
-1. [Tree Max](/DS/Binary%20Tree/BinaryTree.hpp#L33-L43)
+1. [Tree Max](/DS/Binary%20Tree/BinaryTree.hpp#L33)
 2. [Max Depth](/DS/Binary%20Tree/BinaryTree.hpp#L47-L52)
 3. [Path Sum](/DS/Binary%20Tree/BinaryTree.hpp#L66-L69)
 4. [is perfect](/DS/Binary%20Tree/BinaryTree.hpp#L143-L145)
