@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
+#include<cmath>
 
 struct TreeNode {
     int data {} ; 
@@ -29,6 +30,70 @@ class BinaryTree{
             std::cout<<node->data<<'\t' ;
             _print_inorder(node->right) ;          
         }
+
+        int TreeMax(TreeNode *curr){
+            if(!curr) return 0;
+            int mx = curr->data ; 
+            if(root->left) {
+                mx = std::max(mx,TreeMax(curr->left)) ; 
+            }
+            if(root->right){
+                mx = std::max(mx,TreeMax(curr->right)) ; 
+            }
+            return mx ; 
+        }
+
+        int nodes(TreeNode *node){ //Number of Nodes in the Tree , 1-Based
+            if(!node) return 0 ; 
+            return 1+nodes(node->right)+nodes(node->left) ;
+        }
+
+        int levels(TreeNode *node){ // How many levels is the tree ? Zero-based 
+            if(!node) return 0 ; 
+           int  LeftTree = levels(node->left) ; 
+            int RightTree = levels(node->right) ; 
+
+            return 1+std::max(LeftTree,RightTree) ; 
+        }
+
+        bool is_perfect(TreeNode *root){
+            if(!root) return 0 ; 
+            int lvls = levels(root) ; 
+            int sum{0} ;
+            while(lvls--){
+                sum+=std::pow(2,lvls) ; 
+            }
+            return sum == nodes(root) ; 
+        }
+        //Leet code solutions goes here !!
+        class LeetCodeSolutions{
+            public:
+                int _MaxDepth(TreeNode *root)
+                {
+                    if (!root)
+                        return 0;
+                    return 1 + std::max(_MaxDepth(root->right), _MaxDepth(root->left));
+                }
+
+                bool TreeSearch(TreeNode *node, int CurrSum, int TargetSum)
+                {
+                    if (!node)
+                        return false;
+                    CurrSum += node->data;
+                    if (!node->right && !node->left)
+                    {
+                        return CurrSum == TargetSum;
+                    }
+                    return (TreeSearch(node->right, CurrSum, TargetSum)) || (TreeSearch(node->left, CurrSum, TargetSum));
+                }
+
+                bool hasPathSum(TreeNode *root, int targetSum)
+                {
+                    return TreeSearch(root, 0, targetSum);
+                }
+        };
+        
+        LeetCodeSolutions sol;
 
     public:
         BinaryTree(int rootValue) : root(new TreeNode(rootValue)) {}
@@ -63,24 +128,25 @@ class BinaryTree{
             std::cout<<'\n' ; 
         }
 
-        int mx = INT_MIN ; 
-        int TreeMax(TreeNode *curr){
-            if(!curr) return mx;
-            mx = std::max(curr->data , mx);
-            TreeMax(curr->right) ; 
-            TreeMax(curr->left) ; 
-            return mx ; 
-        }
         int MaxValue(){
             return TreeMax(root) ; 
         }
 
-        int _MaxDepth(TreeNode *root){
-            if(!root) return 0 ; 
-            return 1+std::max(_MaxDepth(root->right),_MaxDepth(root->left)) ; 
-        }
         int MaxDepth(){
-            return _MaxDepth(root)  ;
+            return sol._MaxDepth(root)  ;
+        }
+
+        int Nodes(){ //Number of nodes
+            return nodes(root)  ; 
+        }
+
+        bool IsPerfect(){ //Is is it a perfect tree ?
+            return is_perfect(root) ; 
+        }
+        
+        int TreeLevels() // Number of tree levels
+        {
+            return levels(root) ; 
         }
 
 }; 

@@ -17,6 +17,9 @@ void test1(){
     cout<<"Max Value: "<<tree.MaxValue() ; 
     cout<<'\n' ;  
     cout<<"Max Depth: "<<tree.MaxDepth() ; 
+    cout<<"\nHow many nodes in that tree : "<<tree.Nodes() ; 
+    cout<<"\nHow many levels are the current tree : "<<tree.TreeLevels() ; 
+    cout<<"\n\n Is this tree a perfect tree : "<<boolalpha<<tree.IsPerfect() ; 
 }
 
 int main(){
