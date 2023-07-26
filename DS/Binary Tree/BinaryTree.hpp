@@ -2,8 +2,9 @@
 #define _BINARYTREE_
 #include <iostream>
 #include <vector>
+#include <queue>
 #include <cassert>
-#include<cmath>
+#include <cmath>
 
 struct TreeNode {
     int data {} ; 
@@ -147,6 +148,23 @@ class BinaryTree{
         int TreeLevels() // Number of tree levels
         {
             return levels(root) ; 
+        }
+
+        void LevelTraversal(){
+            std::queue<TreeNode*>nodes ; 
+            nodes.push(root) ; 
+            while(!nodes.empty()){
+                TreeNode * curr = nodes.front() ;
+                nodes.pop() ; 
+                std::cout<<curr->data<<'\t' ;
+                if(curr->left){
+                    nodes.push(curr->left) ; 
+                }
+                if(curr->right){
+                    nodes.push(curr->right) ; 
+                }
+            }
+            std::cout<<'\n' ;  
         }
 
 }; 

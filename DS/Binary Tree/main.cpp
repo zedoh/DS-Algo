@@ -7,10 +7,9 @@ using namespace std ;
 
 void test1(){
     BinaryTree tree(1) ;
-    tree.add({2, 4, 7}, {'L', 'L', 'L'});
-    tree.add({2, 4, 8}, {'L', 'L', 'R'});
-    tree.add({2, 5, 19}, {'L', 'R', 'R'});
-    tree.add({3, 6, 10}, {'R', 'R', 'L'});
+    tree.add({2,3,4,5} , {'L' , 'R' , 'L' , 'L' }) ; 
+    tree.add({2,3,6,22} , {'L' , 'R' , 'R' , 'L' }) ; 
+    tree.add({33,5,44,222} , {'R' , 'L' , 'L' , 'R' }) ; 
 
     tree.print_inorder() ; 
 
@@ -20,6 +19,9 @@ void test1(){
     cout<<"\nHow many nodes in that tree : "<<tree.Nodes() ; 
     cout<<"\nHow many levels are the current tree : "<<tree.TreeLevels() ; 
     cout<<"\n\n Is this tree a perfect tree : "<<boolalpha<<tree.IsPerfect() ; 
+    cout<<"\n--------------------------------------------------------------------\n" ; 
+    cout<<"\n\tTesting Level Traversing Function \n" ; 
+    tree.LevelTraversal() ; 
 }
 
 int main(){
