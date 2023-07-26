@@ -1,4 +1,4 @@
-# Easy Challanges
+# Easy Challenges
   - [Tree Max](/DS/Binary%20Tree/BinaryTree.hpp#L34-L44)
  -  [Max Depth](/DS/Binary%20Tree/BinaryTree.hpp#L47-L52)
   - [Path Sum](/DS/Binary%20Tree/BinaryTree.hpp#L66-L69)
@@ -8,3 +8,5 @@
      - [`levels`](/DS/Binary%20Tree/BinaryTree.hpp#L51-L57), return the number of levels in a binary tree ($Zero-based$).
 
 ---
+
+# Medium Challenges
