@@ -13,5 +13,3 @@
     - `dequeue()` function's *Time Complexity* must remain $O(1)$ . 
 - [Implement a Queue using a 2 stack objects](/DS/Queue/TwoStacks.hpp#L40-L52)
     - Implementing Queue using 2 stacks objects, but `enqueue()` must remain $O(1)$ .
-
-- [Dynamic Array Based Implementation](/DS/Queue/Queue.hpp)
