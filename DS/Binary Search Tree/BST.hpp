@@ -21,18 +21,20 @@ class BST{
        TreeNode *insert(TreeNode *root , int val) ; 
        void inorder_print(TreeNode *root) ;
        std::pair <TreeNode * , bool>search(TreeNode *root , int target);
+       void link(TreeNode* parent , TreeNode* child , const std::string& directoin) ; 
+       bool IsLeaf(TreeNode *node) ; 
+           
 
    public:
        BST();
        BST(int data);
        ~BST();
        void insert(int target);
-       void print(); 
-        bool search(int target){
-            //TODO: Fix pair search
-            if(std::pair<TreeNode* , bool>search(root,target)) return true ; 
-            return false ;  
-        }
+       void print();
+       bool search(int target);
+       void Delete(int target);
+       TreeNode *GetParent(TreeNode *root  , TreeNode* ToDelete) ; 
+    
 }; 
 
 #endif
