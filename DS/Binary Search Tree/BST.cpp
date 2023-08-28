@@ -4,9 +4,7 @@ BST::BST(){
     root = nullptr  ;
 }
 
-BST::BST(int data){
-    root->val = data ; 
-}
+BST::BST(int data) : root(new TreeNode(data)) {}
 
 BST::~BST(){
     deleteTree(root) ; 
@@ -19,13 +17,19 @@ void BST::deleteTree(TreeNode *node){
     delete node ; 
 } 
 
-TreeNode* BST::insert(TreeNode *root , int val){
-    if(!root){
-        return new TreeNode(val) ;  
+void  BST::insert(TreeNode *root , int val){
+    if(val < root->val){
+        if(!root->left) root->left = new TreeNode(val) ;
+        else
+            insert(root->left, val);
     }
-    if(val < root->right->val) insert(root->right , val);
-    if(val > root->left->val) insert(root->left , val) ; 
-    return nullptr ; 
+    if (val > root->val)
+        {
+            if (!root->right)
+                root->right = new TreeNode(val);
+            else
+                insert(root->right, val);
+        }
 }
 
 void BST::insert(int target){
@@ -45,14 +49,22 @@ void BST::print(){
     std::cout<<'\n'  ; 
 }
 
-std::pair<TreeNode* , bool> BST::search(TreeNode *root , int target){
-    bool res = root->val == target ; 
-    int value = root->val ; 
-    if(!root)  return {nullptr  ,false} ; 
-    if(res) return {root ,true} ; 
-    if(value > target && root->right) search(root->right , target) ; 
-    if(value < target && root->left) search(root->left , target)  ; 
+std::pair<TreeNode*, bool> BST::search(TreeNode* root, int target) {
+    if (!root) {
+        return {nullptr, false};
+    }
+
+    int value = root->val;
+
+    if (value == target) {
+        return {root, true};
+    } else if (value < target) {
+        return search(root->right, target);
+    } else {
+        return search(root->left, target);
+    }
 }
+
 
 bool BST::search(int target){
     std::pair<TreeNode* , bool> answer = search(root,target) ; 
@@ -65,8 +77,8 @@ TreeNode* BST::GetParent(TreeNode* root  , TreeNode* ToDelete ){
     if(root->right == ToDelete ||root->left == ToDelete ){
         return root ; 
     }
-    GetParent(root->right , ToDelete) ; 
-    GetParent(root->left , ToDelete) ; 
+    return GetParent(root->right , ToDelete) ; 
+    return GetParent(root->left , ToDelete) ; 
 }
 
 void  BST::link(TreeNode* parent , TreeNode* child , const std::string &direction){
@@ -85,6 +97,24 @@ bool BST::IsLeaf(TreeNode *node){
     return false  ;
 }
 
+TreeNode* BST::GetLeaf(TreeNode* root , const std::string &direction){
+    if(!root) return nullptr;
+
+    if(direction == "left"){
+        if(root->left && IsLeaf(root->left)) return root->left ; 
+        else{
+            return GetLeaf(root->left , "left") ; 
+        } 
+    }
+    else if(direction == "right"){
+        if(root->left && IsLeaf(root->right)) return root->right ; 
+        else{
+            return GetLeaf(root->right, "right") ; 
+        }
+    }
+    return root ; 
+}
+
 void BST::Delete(int target){
     std::pair<TreeNode* , bool> isFound = search(root , target) ; 
     if(!isFound.second) {
@@ -96,11 +126,75 @@ void BST::Delete(int target){
 
     if(IsLeaf(ToDelete)&&Parent->left == ToDelete) {
         delete ToDelete ; 
+        ToDelete = nullptr  ; 
         Parent->left = nullptr ; 
         return ; 
     }else if (IsLeaf(ToDelete)&&Parent->right== ToDelete){
         delete ToDelete ; 
+        ToDelete = nullptr  ; 
         ToDelete->right= nullptr; 
         return ;
     }
+
+    if(Parent->left == ToDelete){
+        TreeNode* DeleteRight = ToDelete->right ; 
+        TreeNode* DeleteLeft = ToDelete->left ; 
+
+        Parent->left = DeleteRight ; 
+        TreeNode * LeftLeaf = GetLeaf(DeleteRight , "left") ; 
+        LeftLeaf ->left  = DeleteLeft ;
+        delete ToDelete ; 
+        ToDelete = nullptr ;  
+
+    }else{
+        TreeNode* DeleteRight = ToDelete->right ; 
+        TreeNode* DeleteLeft = ToDelete->left ; 
+        Parent->left = DeleteRight ; 
+
+        TreeNode* LeftLeaf = GetLeaf(DeleteRight , "left") ;
+        LeftLeaf->left = DeleteLeft ; 
+        delete ToDelete  ; 
+        ToDelete = nullptr ;  
+    }
+}
+
+std::vector<int> BST::BstToVec(TreeNode* root) {
+    std::vector<int> vec;
+
+    if (!root) {
+        return vec; // Return an empty vector if the root is nullptr
+    }
+
+    // Traverse left subtree
+    std::vector<int> leftValues = BstToVec(root->left);
+    vec.insert(vec.end(), leftValues.begin(), leftValues.end());
+
+    // Add current node's value
+    vec.push_back(root->val);
+
+    // Traverse right subtree
+    std::vector<int> rightValues = BstToVec(root->right);
+    vec.insert(vec.end(), rightValues.begin(), rightValues.end());
+
+    return vec;
+}
+
+std::vector<int> BST::DebugSorted(std::vector<int>&v){
+    std::set<int>check ; 
+    for(auto i : v){
+        check.insert(i) ; 
+    }
+    v.assign(check.begin() , check.end()) ; 
+    return v; 
+}
+
+bool BST::DebugCheckTree(std::vector<int>&v){
+    std::vector<int>vec1 = v ; 
+    std::vector<int>vec2 = DebugSorted(v) ; 
+    return vec1.size() == vec2.size() ; 
+}
+
+bool BST::CheckTree(){
+    std::vector<int> check = BstToVec(root) ;  
+    return DebugCheckTree(check)  ; 
 }
