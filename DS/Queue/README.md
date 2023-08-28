@@ -13,7 +13,7 @@
 
 > **Warning**
 > DeepLink issue
-- [Implement a Queue using a 2 stacks objects](/DS/Queue/TwoStacks.hpp#L24) 
+- [Implement a Queue using a 2 stacks objects](/DS/Queue/TwoStacks.hpp#L24-L36) 
     - Implementing Queue functionalities using 2 stack objects.
     - `dequeue()` function's *Time Complexity* must remain $O(1)$ . 
 - [Implement a Queue using a 2 stack objects](/DS/Queue/TwoStacks.hpp#L40-L52) 
