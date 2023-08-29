@@ -2,7 +2,7 @@
 
 1. [Destructor](/DS/Single%20Linked%20List/List.hpp#L184-L195) 
 2. [Insert Front](/DS/Single%20Linked%20List/Easy/InsertFront.cpp)
-3. [Delete Front](/DS/Single%20Linked%20List/Easy%20To%20Medium/PopFront.cpp)
+3. [Delete Front](/DS/Single%20Linked%20List/Easy/PopFront.cpp)
 4. [Get the n_th from back](/DS/Single%20Linked%20List/Easy%20To%20Medium/ValueFromEnd.cpp)
 5. [Is the same list](/DS/Single%20Linked%20List/Easy%20To%20Medium/IsSame.cpp)
 6. [Linked list without `length` or  `tail`](/DS/Single%20Linked%20List/NoTail.hpp)
