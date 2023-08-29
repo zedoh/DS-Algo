@@ -1,4 +1,4 @@
-# Easy Challanges
+# 1️⃣ Easy Challanges
 
 1. [Destructor](/DS/Single%20Linked%20List/List.hpp#L184-L195) 
 2. [Insert Front](/DS/Single%20Linked%20List/Easy/InsertFront.cpp)
@@ -7,7 +7,7 @@
 5. [Is the same list](/DS/Single%20Linked%20List/Easy%20To%20Medium/IsSame.cpp)
 6. [Linked list without `length` or  `tail`](/DS/Single%20Linked%20List/NoTail.hpp)
 ---
-# Easy To Medium Challanges
+# 2️⃣ Easy To Medium Challanges
 1. [Delete Node With Key](/DS/Single%20Linked%20List/List.hpp#L528-L543)
 2. [Swap Each Pair Values](/DS/Single%20Linked%20List/List.hpp#L545-L564)
 3. [Reverse List](/DS/Single%20Linked%20List/List.hpp#L566-L585)
@@ -39,7 +39,7 @@
       - `Note`* : I didn't use here the utility functions in some functions , as I solve the problems not in order . 
 
 ---
-# Medium Problems 
-4. [Remove Last Occurence](/DS/Single%20Linked%20List/RemoveLastOcc.cpp)
-5. [Move To Back](/DS/Single%20Linked%20List/MoveToBack.cpp) //TODO
-6. [Recursive Max]()
+# 3️⃣ Medium Problems 
+1. [Remove Last Occurence](/DS/Single%20Linked%20List/RemoveLastOcc.cpp)
+2. [Move To Back](/DS/Single%20Linked%20List/MoveToBack.cpp) //TODO
+3. [Recursive Max]()
