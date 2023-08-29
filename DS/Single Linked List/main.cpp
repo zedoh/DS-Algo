@@ -207,6 +207,10 @@ void Medium2() {
     // printLine("Move back all the nodes with the value of 1:") ; 
     // list.MoveBack(1) 
     list.print() ; 
+
+    printLine("Return the maximum number from the list") ; 
+    cout<<list.max()<<'\n' ; 
+
 }
 int main()
 {

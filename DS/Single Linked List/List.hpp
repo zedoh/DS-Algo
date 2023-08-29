@@ -702,27 +702,9 @@ public:
 		debug_verify_data_integrity();
 	}
 
-   void RemoveLastOcc(int value){
-      if(!length) return ; 
-
-      Node *delete_my_next_node = nullptr ; 
-      bool is_found = false ; 
-
-      for(Node *curr =head , *prv = nullptr ; curr ;prv=curr , curr = curr->next){
-         if(curr->data == value){
-            is_found = true , delete_my_next_node = prv ;
-         }
-      }
-      if(is_found){
-         if(delete_my_next_node) delete_next_node(delete_my_next_node) ; 
-         else{
-            pop_front()  ;
-         }
-      }
-      debug_verify_data_integrity() ; 
-   }
-
-  void MoveBack(int value) ; //Medium Problems - #Problem (5) , Implementation Separated in other file  [Studying OOP :) ] 
+   void RemoveLastOcc(int value);
+   void MoveBack(int value); // Medium Problems - #Problem (5) , Implementation Separated in other file  [Studying OOP :) ] 
+   int max() ; //Recursive Function to return the max value
 };
 
 #endif

@@ -248,4 +248,6 @@ public:
 
 ---
 # Medium Problems 
-5. [Problem 5](/DS/Single%20Linked%20List/MoveToBack.cpp)
+4. [Problem#4 : Remove Last Occurence](/DS/Single%20Linked%20List/RemoveLastOcc.cpp)
+5. [Problem#5 : Move To Back](/DS/Single%20Linked%20List/MoveToBack.cpp) //TODO
+6. [Problem#6 : Recursive Max]()
