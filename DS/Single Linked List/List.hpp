@@ -260,56 +260,8 @@ public:
       return false;
    }
 
-   void insert_front(int value)
-   {
-      Node *temp = new Node(value);
-      if (length == 0)
-      {
-         head = temp;
-         head->next = nullptr;
-         tail = head;
-      }
-      else if (length == 1)
-      {
-         tail = head;
-         head = temp;
-         head->next = tail;
-         tail->next = nullptr;
-      }
-      else
-      {
-         temp->next = head;
-         head = temp;
-      }
-      debug_add_node(temp);
-      ++length;
-   }
-
-   void pop_front()
-   {
-      assert(length > 0);
-
-      if (length == 1)
-      {
-         delete_node(head) ; 
-         head = tail = nullptr;
-         return ; 
-      }
-      else if(length ==2 ){
-         delete_node(tail) ; 
-         head->next  = nullptr;
-         tail = head;
-      }
-      else
-      {
-         Node *temp = head;
-         head = head->next;
-         delete_node(temp) ; 
-         temp = nullptr;
-         return ; 
-      }
-   }
-
+   void insert_front(int value) ; 
+   void pop_front() ; 
    void pop_back()
    {
       if (length == 0)
@@ -431,42 +383,7 @@ public:
       }
       --length;
    }
-   int value_from_end(int idx)
-   {
-
-      if (idx > length)
-      {
-         throw std::out_of_range("out of range");
-      }
-      else if (idx == 1)
-      {
-         return tail->data;
-      }
-      else if (idx == length)
-      {
-         return head->data;
-      }
-      else if (length == 0)
-      {
-         throw std::out_of_range("EMPTY !!!");
-      }
-
-      // 1 2 3 4 5 ,  n(2) , size(5)
-      // return (4) , size (5) , (5)-(2)+1 , size-n+1
-      idx = length - idx + 1;
-      int count{1};
-      for (Node *curr = head; curr; curr = curr->next)
-      {
-         if (count == idx)
-         {
-            return curr->data;
-         }
-
-         ++count;
-      }
-      return -1;
-   }
-
+   int value_from_end(int value) ; 
    void remove_value(int value)
    {
       if (length == 0)
@@ -502,28 +419,7 @@ public:
    }
 
    // Compare between 2 lists
-   bool is_same(List &a)
-   {
-      if (size() != a.size())
-      {
-         return false;
-      }
-      Node *curr = head;
-      Node *aCurr = a.head;
-
-      while (curr != nullptr && aCurr != nullptr)
-      {
-         if (curr->data != aCurr->data)
-         {
-            return false;
-         }
-         curr = curr->next;
-         aCurr = aCurr->next;
-      }
-
-      return true;
-   }
-
+   bool is_same(List &a) ; 
    // Deleting a node using a value
    void delete_node_with_key(int value)
    {
