@@ -11,8 +11,8 @@
 
 --- 
 ## Fixed Links
-- [Implement a Queue using a 2 stacks objects](/DS/Queue/TwoStacks.hpp#) 
+- [Implement a Queue using a 2 stacks objects](DS/Queue/TwoStacks.hpp) 
     - Implementing Queue functionalities using 2 stack objects.
     - `dequeue()` function's *Time Complexity* must remain $O(1)$ . 
-- [Implement a Queue using a 2 stack objects](/DS/Queue/TwoStacks.hpp) 
+- [Implement a Queue using a 2 stack objects](DS/Queue/TwoStacks.hpp) 
     - Implementing Queue using 2 stacks objects, but `enqueue()` must remain $O(1)$ .
