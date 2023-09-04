@@ -10,7 +10,6 @@
 
 // Code Complexity
 // Space Complextiy : O(N)
-
 // Time Complexity : O(N)
 struct Node
 {
@@ -259,7 +258,6 @@ public:
          return true;
       return false;
    }
-
    void insert_front(int value) ; 
    void pop_front() ; 
    void pop_back()
@@ -584,7 +582,6 @@ public:
 			return;
 			
 		// Just like 2 nested loops, find all duplicates and delete
-
 		for (Node *cur1 = head; cur1; cur1 = cur1->next) {
 			for (Node *cur2 = cur1->next, *prv = cur1; cur2;) {
 				if(cur1->data == cur2->data) {
@@ -592,7 +589,6 @@ public:
 					cur2 = prv->next;
 				} else
 					prv = cur2, cur2 = cur2->next;	// normal move
-         
 			}
 		}
 		debug_verify_data_integrity();
@@ -600,7 +596,11 @@ public:
 
    void RemoveLastOcc(int value);
    void MoveBack(int value); // Medium Problems - #Problem (5) , Implementation Separated in other file  [Studying OOP :) ] 
-   int max() ; //Recursive Function to return the max value
+   int max(Node*curr) ; //Recursive Function to return the max value
+   int max(){
+      return max(this->head)  ;
+   }
+
 };
 
 #endif

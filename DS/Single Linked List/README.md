@@ -36,10 +36,10 @@
    }
       ```
 5.  [Insert To Be Sorted](/DS/Single%20Linked%20List/List.hpp#L604-L650)
-      - `Note`* : I didn't use here the utility functions in some functions , as I solve the problems not in order . 
+      - _Note_ : I didn't use here the utility functions in some functions , as I solve the problems not in order . 
 
 ---
 # 3️⃣ Medium Problems 
-1. [Remove Last Occurence](/DS/Single%20Linked%20List/RemoveLastOcc.cpp)
-2. [Move To Back](/DS/Single%20Linked%20List/MoveToBack.cpp) //TODO
-3. [Recursive Max]()
+1. [Remove Last Occurence](/DS/Single%20Linked%20List/Medium/RemoveLastOcc.cpp)
+2. [Move To Back](/DS/Single%20Linked%20List/Medium/MoveToBack.cpp) //TODO
+3. [Recursive Max](/DS/Single%20Linked%20List/Medium/max.cpp)
