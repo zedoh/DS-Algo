@@ -7,9 +7,6 @@
 #include <algorithm>
 #include <cassert>
 #include <utility>
-
-class LeetCode; 
-
 struct TreeNode {
     int val{};
     TreeNode* left{ };
