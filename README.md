@@ -12,3 +12,4 @@ For each data structure, there is an implementation and challenges solution. Cha
 - [Stack](/DS/Stack/)
 - [Queue](/DS/Queue/)
 - [Binary Tree](/DS/Binary%20Tree/)
+- [Binary Search Tree](/DS/Binary%20Search%20Tree/)
