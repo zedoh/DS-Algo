@@ -1,4 +1,4 @@
-#include "BST.hpp"
+#include "Bst.hpp"
 
 BST::BST() {
     root = nullptr;
@@ -12,19 +12,21 @@ BST::~BST() {
 
 void BST::deleteTree(TreeNode* node) {
     if (!node) return;
-    if (node->left) deleteTree(node->left);
-    if (node->right) deleteTree(node->right);
+    if (node->left)
+        deleteTree(node->left);
+    if (node->right)
+        deleteTree(node->right);
     delete node;
 }
 
-void  BST::insert(TreeNode* root, int val) {
+void BST::insert(TreeNode* root, int val) {
     if (val < root->val) {
-        if (!root->left) root->left = new TreeNode(val);
+        if (!root->left)
+            root->left = new TreeNode(val);
         else
             insert(root->left, val);
     }
-    if (val > root->val)
-    {
+    else if (val > root->val) { 
         if (!root->right)
             root->right = new TreeNode(val);
         else
@@ -37,15 +39,21 @@ void BST::insert(int target) {
 }
 
 void BST::inorder_print(TreeNode* root) {
-    if (!root) return;
+    if (!root)
+        return;
     int value = root->val;
-    if (root->left) inorder_print(root->left);
+    inorder_print(root->left);
     std::cout << value << '\t';
-    if (root->right) inorder_print(root->right);
+    inorder_print(root->right);
 }
 
 void BST::print() {
     inorder_print(root);
+    if(!CheckTree())
+        {
+            std::cout<<"Tree is not valid check the tree values again!!" ; 
+            return ; 
+        }
     std::cout << '\n';
 }
 
@@ -75,17 +83,29 @@ bool BST::search(int target) {
 
 //--------------------------UTILITY Functions-----------------------------//
 TreeNode* BST::GetParent(TreeNode* root, TreeNode* ToDelete) {
-   
-    if (!root) return nullptr;
+    if (!root) return nullptr; // Node not found, return nullptr
     if (ToDelete == root) {
-        std::cout << "You are trying to get the parent of the ROOT ! :)\n"; 
-        return root ; 
+        std::cout << "You are trying to get the parent of the ROOT ! :)\n";
+        return nullptr; // Node is the root, so it has no parent
     }
-    if (root->right == ToDelete || root->left == ToDelete) {
+    
+    // Check the left subtree
+    if ((root->left != nullptr) && (root->left == ToDelete)) {
         return root;
     }
-    return GetParent(root->right, ToDelete);
-    return GetParent(root->left, ToDelete);
+
+    // Check the right subtree
+    if ((root->right != nullptr) && (root->right == ToDelete)) {
+        return root;
+    }
+
+    // If the node wasn't found in the current subtree, recursively search both subtrees
+    TreeNode* leftParent = GetParent(root->left, ToDelete);
+    if (leftParent) {
+        return leftParent; // Found in the left subtree
+    }
+    
+    return GetParent(root->right, ToDelete); // Check the right subtree
 }
 
 void  BST::link(TreeNode* parent, TreeNode* child, const std::string& direction) {
@@ -196,6 +216,7 @@ int BST::GetChild(int target, const std::string& direction) {
         assert(node->right); 
         return node->right->val; 
     }
+    return -1 ; 
 }
 
 
@@ -215,8 +236,4 @@ TreeNode* BST::getNext(std::vector<TreeNode*>& ancsector) {
     TreeNode* child = ancsector.back(); 
     ancsector.pop_back(); 
     return child;
-}
-
- TreeNode* BST::getRoot() {
-    return root; 
 }

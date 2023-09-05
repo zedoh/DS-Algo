@@ -41,7 +41,7 @@ private:
 
 
 public:
-    BST();
+    BST() ;
     BST(int data);
     ~BST();
     void insert(int target);
@@ -52,7 +52,7 @@ public:
     int maxValue(); 
     int GetParent(int target); 
     int GetChild(int target, const std::string& direction); 
-    TreeNode*  getRoot(); 
+
 };
 
 

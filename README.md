@@ -13,3 +13,7 @@ For each data structure, there is an implementation and challenges solution. Cha
 - [Queue](/DS/Queue/)
 - [Binary Tree](/DS/Binary%20Tree/)
 - [Binary Search Tree](/DS/Binary%20Search%20Tree/)
+- Trie **TODO**
+- AVL Tree **TODO**
+- Hash Table **TODO**
+
