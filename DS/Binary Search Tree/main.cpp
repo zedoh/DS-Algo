@@ -19,6 +19,9 @@ void Test1(){
     cout<<"\nGetting the parent of the value \""<<10<<"\" : "<<bst.GetParent(10)<<'\n' ; 
     cout<<"\nMaximum Value is : "<<bst.maxValue()<<'\n' ; 
     cout<<"\nMinimum Value is : "<<bst.minValue()<<'\n' ; 
+    cout<<"\nDeleting the node with the value 10 \n"  ; 
+    bst.Delete(10) ; 
+    bst.print() ; 
 
 }
 

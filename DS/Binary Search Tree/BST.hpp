@@ -32,7 +32,9 @@ private:
     TreeNode *getNext(std::vector<TreeNode *> &ancsector);
     int minValue(TreeNode *root);
     bool FindChain(TreeNode* root, int target ,std::vector<TreeNode*>&ancestor) ; 
-    std::pair<bool , TreeNode*>successor(int target); 
+    std::pair<bool , int>successor(int target); 
+    TreeNode* GetNode(TreeNode* root , int target) ;  
+    TreeNode* DeleteNode(TreeNode* root , int target) ; 
 
     /*------------------Debuging Utilities--------------------*/
     std::vector<int> BstToVec(TreeNode *root);
@@ -51,7 +53,7 @@ public:
     int maxValue();
     int GetParent(int target);
     int GetChild(int target, const std::string &direction);
-    TreeNode* DeleteNode(TreeNode* root , int target) ; 
+    void Delete(int target) ; 
 };
 
 #endif

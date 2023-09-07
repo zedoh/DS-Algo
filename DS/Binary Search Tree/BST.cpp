@@ -1,4 +1,4 @@
-#include "Bst.hpp"
+#include "BST.hpp"
 
 BST::BST() {
     root = nullptr;
@@ -239,7 +239,7 @@ bool BST::FindChain(TreeNode* root , int target , std::vector<TreeNode*>&ancesto
 }
 
 
-std::pair<bool ,int>successor(int target){
+std::pair<bool ,int> BST::successor(int target){
     std::vector<TreeNode*>ancestor  ; 
     if(!FindChain(root , target , ancestor))
         return std::make_pair(false , -1) ;
@@ -256,4 +256,66 @@ std::pair<bool ,int>successor(int target){
     if(parent)
         return std::make_pair(true , parent->val) ; 
     return std::make_pair(false , -1) ; 
+}
+
+
+TreeNode* BST::DeleteNode(TreeNode* root, int target) {
+    // Step 1: Find the node to delete (ToDelete) using GetNode function
+    TreeNode* ToDelete = GetNode(root, target);
+
+    if (!ToDelete) {
+        // Node with the target value not found, nothing to delete
+        return root;
+    }
+
+    // Step 2: Store a temporary pointer to the node to delete
+    TreeNode* temp = ToDelete;
+
+    // Step 3: Handle different cases for node deletion
+    if (!ToDelete->right && !ToDelete->left) {
+        // Case 1: Node has no children (leaf node)
+        delete ToDelete;
+        ToDelete = nullptr;
+    } else if (!ToDelete->right) {
+        // Case 2: Node has only a left child
+        ToDelete = ToDelete->left;
+        delete temp;
+        temp = nullptr;
+    } else if (!ToDelete->left) {
+        // Case 3: Node has only a right child
+        ToDelete = ToDelete->right;
+        delete temp;
+        temp = nullptr;
+    } else {
+        // Case 4: Node has two children
+        // Find the minimum value in the right subtree
+        ToDelete->val = minValue(ToDelete->right);
+        // Recursively delete the successor node from the right subtree
+        ToDelete->right = DeleteNode(ToDelete->right, ToDelete->val);
+        delete temp;
+        temp = nullptr;
+    }
+
+    // Step 4: Return the updated root of the tree
+    if (temp == root) {
+        return ToDelete;  // Return the new root if the root itself was deleted
+    } else {
+        return root;      // Return the original root if a non-root node was deleted
+    }
+}
+
+
+TreeNode* BST::GetNode(TreeNode*root , int target){
+   if(!root)
+    return nullptr ; 
+    int value = root->val ; 
+    if(target ==  value)
+        return root ; 
+    if(target < value)
+        return GetNode(root->left , target)  ; 
+    return GetNode(root->right , target )  ; 
+}
+
+void BST::Delete(int target){
+    DeleteNode(root,target) ; 
 }
