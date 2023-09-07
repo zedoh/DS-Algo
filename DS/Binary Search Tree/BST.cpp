@@ -90,12 +90,12 @@ TreeNode* BST::GetParent(TreeNode* root, TreeNode* ToDelete) {
     }
     
     // Check the left subtree
-    if ((root->left != nullptr) && (root->left == ToDelete)) {
+    if ((root->left) && (root->left == ToDelete)) {
         return root;
     }
 
     // Check the right subtree
-    if ((root->right != nullptr) && (root->right == ToDelete)) {
+    if ((root->right) && (root->right == ToDelete)) {
         return root;
     }
 
@@ -182,6 +182,7 @@ bool BST::CheckTree() {
     return DebugCheckTree(check);
 }
 
+// Getting the minimum Value starting from a certain Node !!
 int BST::minValue(TreeNode* root) {
     TreeNode* MIN = getLeaf(root, "left"); 
     int value = MIN->val; 
@@ -220,20 +221,39 @@ int BST::GetChild(int target, const std::string& direction) {
 }
 
 
-bool BST::findChain(TreeNode* root, int target, std::vector<TreeNode*>& anscestor) {
-    anscestor.push_back(root); 
-
-    if (target == root->val)
-        return true; 
-
-    if (target < root->val)
-        return findChain(root->left, target, anscestor); 
-
-    return findChain(root->right, target, anscestor);
-}
-
 TreeNode* BST::getNext(std::vector<TreeNode*>& ancsector) {
+    if(ancsector.size() == 0)
+        return nullptr;
     TreeNode* child = ancsector.back(); 
     ancsector.pop_back(); 
     return child;
+}
+
+bool BST::FindChain(TreeNode* root , int target , std::vector<TreeNode*>&ancestor){
+    ancestor.push_back(root);
+    if (target == root->val)
+        return true;
+    if (target < root->val)
+        return FindChain(root->left, target, ancestor);
+    return root->right && FindChain(root->right, target, ancestor);
+}
+
+
+std::pair<bool ,int>successor(int target){
+    std::vector<TreeNode*>ancestor  ; 
+    if(!FindChain(root , target , ancestor))
+        return std::make_pair(false , -1) ;
+    TreeNode* child = getNext(ancestor) ; 
+    if(child->right)
+        return std::make_pair(true,minValue(child->right)) ; 
+    TreeNode* parent = getNext(ancestor) ; 
+    while(parent && parent->right == child)
+        {
+            child = parent ; 
+            parent = getNext(ancestor) ;
+        }
+
+    if(parent)
+        return std::make_pair(true , parent->val) ; 
+    return std::make_pair(false , -1) ; 
 }
