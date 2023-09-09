@@ -33,7 +33,6 @@ private:
     int minValue(TreeNode *root);
     bool FindChain(TreeNode* root, int target ,std::vector<TreeNode*>&ancestor) ; 
     std::pair<bool , int>successor(int target); 
-    TreeNode* GetNode(TreeNode* root , int target) ;  
     TreeNode* DeleteNode(TreeNode* root , int target) ; 
 
     /*------------------Debuging Utilities--------------------*/

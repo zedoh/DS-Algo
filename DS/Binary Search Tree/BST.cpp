@@ -1,4 +1,4 @@
-#include "BST.hpp"
+#include "Bst.hpp"
 
 BST::BST() {
     root = nullptr;
@@ -260,62 +260,44 @@ std::pair<bool ,int> BST::successor(int target){
 
 
 TreeNode* BST::DeleteNode(TreeNode* root, int target) {
-    // Step 1: Find the node to delete (ToDelete) using GetNode function
-    TreeNode* ToDelete = GetNode(root, target);
-
-    if (!ToDelete) {
-        // Node with the target value not found, nothing to delete
-        return root;
+    if (!root) {
+        return root; // Node not found, nothing to delete
     }
 
-    // Step 2: Store a temporary pointer to the node to delete
-    TreeNode* temp = ToDelete;
-
-    // Step 3: Handle different cases for node deletion
-    if (!ToDelete->right && !ToDelete->left) {
-        // Case 1: Node has no children (leaf node)
-        delete ToDelete;
-        ToDelete = nullptr;
-    } else if (!ToDelete->right) {
-        // Case 2: Node has only a left child
-        ToDelete = ToDelete->left;
-        delete temp;
-        temp = nullptr;
-    } else if (!ToDelete->left) {
-        // Case 3: Node has only a right child
-        ToDelete = ToDelete->right;
-        delete temp;
-        temp = nullptr;
+    if (target < root->val) {
+        root->left = DeleteNode(root->left, target);
+    } else if (target > root->val) {
+        root->right = DeleteNode(root->right, target);
     } else {
+        // Node with the target value found
+
+        // Case 1 and Case 2: Node has no left child or only a left child
+        if (!root->right) {
+            TreeNode* temp = root->left;
+            delete root;
+            return temp;
+        }
+        // Case 3: Node has no right child or only a right child
+        else if (!root->left) {
+            TreeNode* temp = root->right;
+            delete root;
+            return temp;
+        }
+
         // Case 4: Node has two children
-        // Find the minimum value in the right subtree
-        ToDelete->val = minValue(ToDelete->right);
-        // Recursively delete the successor node from the right subtree
-        ToDelete->right = DeleteNode(ToDelete->right, ToDelete->val);
-        delete temp;
-        temp = nullptr;
+        // Find the in-order successor (minimum value in the right subtree)
+        TreeNode* minValueNode = getLeaf(root->right, "left");
+        // Copy the successor's data to this node
+        root->val = minValueNode->val;
+        // Delete the successor node
+        root->right = DeleteNode(root->right, minValueNode->val);
     }
 
-    // Step 4: Return the updated root of the tree
-    if (temp == root) {
-        return ToDelete;  // Return the new root if the root itself was deleted
-    } else {
-        return root;      // Return the original root if a non-root node was deleted
-    }
+    return root;
 }
 
 
-TreeNode* BST::GetNode(TreeNode*root , int target){
-   if(!root)
-    return nullptr ; 
-    int value = root->val ; 
-    if(target ==  value)
-        return root ; 
-    if(target < value)
-        return GetNode(root->left , target)  ; 
-    return GetNode(root->right , target )  ; 
-}
-
-void BST::Delete(int target){
-    DeleteNode(root,target) ; 
+void BST::Delete(int target)
+{
+    DeleteNode(root, target);
 }
