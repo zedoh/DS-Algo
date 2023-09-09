@@ -1,5 +1,6 @@
 # 🌲 Binary Search Tree 
-- [Implementation](/DS/Binary%20Search%20Tree/BST.cpp)
+- [Declaration](/DS/Binary%20Search%20Tree/Bst.hpp)
+- [Implementation](/DS/Binary%20Search%20Tree/Bst.cpp)
 
 
 # 1️⃣ Easy Challenges 
