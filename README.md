@@ -16,5 +16,8 @@
 8. [Trie](/DS/Trie/) 
 9. AVL Tree **TODO**
 10. Hash Table **TODO**
+11. Priority Heap **TODO**
 
 ---
+### Algorithms
+1. [Insertion Sort](/Algorithms/Insertion%20Sort/)
