@@ -21,5 +21,5 @@
 ---
 ### Algorithms
 1. [Insertion Sort](/Algorithms/Insertion%20Sort/)
-2. [Binary Search](/Algorithms/Searching/)
+2. [Binary Search](/Algorithms/Binary%20Search/)
 3. [Graph](/Algorithms/Graph/)
