@@ -1,7 +1,7 @@
 #ifndef _BINARYTREE_
 #define _BINARYTREE_
 #include <iostream>
-#include<string>
+#include <string>
 #include <vector>
 #include <queue>
 #include <cassert>

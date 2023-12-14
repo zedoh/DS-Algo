@@ -23,3 +23,4 @@
 1. [Insertion Sort](/Algorithms/Insertion%20Sort/)
 2. [Binary Search](/Algorithms/Binary%20Search/)
 3. [Graph](/Algorithms/Graph/)
+4. [DFS](/Algorithms/DFS/)
