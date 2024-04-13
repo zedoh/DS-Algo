@@ -24,3 +24,4 @@
 2. [Binary Search](/Algorithms/Binary%20Search/)
 3. [Graph](/Algorithms/Graph/)
 4. [DFS](/Algorithms/DFS/)
+5. [DP](/Algorithms/DP/)

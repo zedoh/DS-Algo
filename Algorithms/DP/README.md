@@ -1,8 +1,8 @@
 ## Implementations
 ### Longest Increasing Subsequence
-1. [LIS (V1)](/Algorithms/DP/LIS.cpp)
-2. [LIS (V2)](/Algorithms/DP/LISv2.cpp)
-3. [LCS](/Algorithms/DP/LCS.cpp)
+1. [LIS (V1)](/Algorithms/DP/Pick%20or%20Leave/Implementations/LIS.cpp)
+2. [LIS (V2)](/Algorithms/DP/Pick%20or%20Leave/Implementations/LISv2.cpp)
+3. [LCS](/Algorithms/DP/Pick%20or%20Leave/Implementations/LCS.cpp)
 
 # Pick or Leave
 ## Medium Problems
