@@ -1,9 +1,11 @@
 ## Implementations
-### Longest Increasing Subsequence
+### Memoization
+#### Longest Increasing Subsequence & Longest Common subsequence
 1. [LIS (V1)](/Algorithms/DP/Pick%20or%20Leave/Implementations/LIS.cpp)
 2. [LIS (V2)](/Algorithms/DP/Pick%20or%20Leave/Implementations/LISv2.cpp)
 3. [LCS](/Algorithms/DP/Pick%20or%20Leave/Implementations/LCS.cpp)
 
+---
 # Pick or Leave
 ## Medium Problems
 1. [Subset Sum Problem](/Algorithms/DP/Pick%20or%20Leave/Medium1/subsetsum-1.cpp)
@@ -11,12 +13,12 @@
 - [TODO]  LeetCode 1691 - Maximum Height by Stacking Cuboids
 
 
-
 ## Medium to Hard Problems
 1. [Best time to buy or sell a stock](/Algorithms/DP/Pick%20or%20Leave/Medium%20to%20Hard/309.best-time-to-buy-and-sell-stock-with-cooldown.cpp)
 2. [House Robber II](/Algorithms/DP/Pick%20or%20Leave/Medium%20to%20Hard/213.house-robber-ii.cpp)
 3. [Minimum Number of Removals to Make a Mountain Array](/Algorithms/DP/Pick%20or%20Leave/Medium%20to%20Hard/1671.minimum-number-of-removals-to-make-mountain-array.cpp)
 
+---
 # Enumerating Choices Pattern
 ## Implementation 
 1. [Edit Distance](/Algorithms/DP/Enumerating%20the%20choices/EditDistance.cpp)
@@ -24,6 +26,7 @@
 ## Medium Challenges
 1. [746. Min Cost Climbing Stairs](/Algorithms/DP/Enumerating%20the%20choices/Medium/min-cost-climbing-stairs.cpp)
 
+---
 # DP Ranges Pattern 
  ## Medium Challenges
  1. [1312.Minimum Insertion Steps to Make a String Palindrome](/Algorithms/DP/DP%20Ranges/Medium/1312.Minimum%20Insertion%20Steps%20to%20Make%20a%20String%20Palindrome.cpp)
@@ -33,4 +36,3 @@
 ## Medium To Hard Challenges
 1. []() 
 2. []()
-3. []()
