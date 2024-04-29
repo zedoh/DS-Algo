@@ -36,3 +36,12 @@
 ## Medium To Hard Challenges
 1. []() 
 2. []()
+
+
+---
+# DP Counting Pattern
+## Medium Challenges
+1. [518.Coin Change 2](/Algorithms/DP/Counting/coinchangeii.cpp) 
+2. [377.Combination Sum IV](/Algorithms/DP/Counting/CombinationSumIV.cpp)
+3. [1155.Number of Dice Rolls With Target Sum]()
+4. [823.Binary Trees With Factors]()
