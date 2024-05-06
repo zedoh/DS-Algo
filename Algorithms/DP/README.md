@@ -43,5 +43,12 @@
 ## Medium Challenges
 1. [518.Coin Change 2](/Algorithms/DP/Counting/coinchangeii.cpp) 
 2. [377.Combination Sum IV](/Algorithms/DP/Counting/CombinationSumIV.cpp)
-3. [1155.Number of Dice Rolls With Target Sum]()
+3. [1155.Number of Dice Rolls With Target Sum](/DS-Algo/Algorithms/DP/Counting/NumberofDiceRollsWithTargetSum.cpp)
 4. [823.Binary Trees With Factors]()
+
+
+---
+# Dp on Grid
+1. [931. Minimum Falling Path Sum]() TODO
+2. [576. Out of Boundary Paths](/Algorithms/DP/DP%20on%20Grid/576.cpp)
+3. [221. Maximal Square](/Algorithms/DP/DP%20on%20Grid/221.cpp)
